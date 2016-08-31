@@ -51,7 +51,7 @@ You can just download .zip pack of this plugin from <a href="http://www.viewdesi
 This pack includes all necessary files to start:
 - [jQuery library](http://jquery.com/) (1.6 minimum)
 - [jQuery mousewheel](https://plugins.jquery.com/mousewheel/) (3.1.13 minimum)
-- jQuery easing (1.3 minimum)
+- [jQuery easing](https://github.com/gdsmith/jquery.easing) (1.3 minimum)
 - viewScroller.css
 - viewScroller.min.css
 - viewScroller.js
@@ -70,7 +70,7 @@ bower install viewscroller.js
 npm install viewscroller.js
 
 // NuGet
-nuget Install-Package viewScroller.js
+PM> Install-Package viewScroller
 ```
 
 ## Libraries
