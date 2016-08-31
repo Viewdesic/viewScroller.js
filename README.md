@@ -219,7 +219,7 @@ or you can use classes from examples.css such as `.box` and `.info`:
 For more information look at the examples' source code.
 [the official project website] (http://www.viewdesic.com/viewscroller/index.html).
 
-### Initialization
+## Initialization
 
 To start using viewScroller.js plugin you have to define it like this:
 
@@ -240,7 +240,7 @@ $('.mainbag').viewScroller({
 });
 ```
 
-### Parameters
+## Parameters
 
 List of all parameters to use inside the viewScroller.js init function:
 
@@ -275,7 +275,7 @@ $('.mainbag').viewScroller({
 });
 ```
 
-### Functions
+## Functions
 
 List of all functions to change the most important parameters:
 
@@ -324,7 +324,7 @@ ex.: `$.fn.viewScroller.setFixedWidth(value);`
 - setSpaceMainBag(value)
 ex.: `$.fn.viewScroller.setSpaceMainBag(value);`
 
-###Examples of using viewScroller functions to change views:
+### Examples of using viewScroller functions to change views:
 
 - showMainView('next'/'prev')
 ex.: `$.fn.viewScroller.showMainView('next');`
@@ -335,7 +335,7 @@ ex.: `$.fn.viewScroller.showSubView(1, 'next');`
 - showView(anchor_name)
 ex.: `$.fn.viewScroller.showView('s-subview-2');`
 
-### Callbacks
+## Callbacks
 
 There are four predefined callbacks.
 
@@ -368,7 +368,7 @@ $('.mainbag').viewScroller({
 });
 ```
 
-### Predefined classes
+## Predefined classes
 
 List of all predefined classes:
 
@@ -389,7 +389,7 @@ var mainbag_sel = '.mainbag', // mainbag class
 
 **Remember that if you want to change some of the classes inside viewScroller.js file you need to change it in your HTML structure also.**
 
-### Reporting any issue
+## Reporting any issue
 
 If you have some issue with this plugin just report it on the GitHub.
 
