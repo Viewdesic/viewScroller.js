@@ -1,0 +1,64 @@
+/*! 
+ * =================================================
+ * viewScroller
+ * Version: 2.0.1
+ * Copyright (c) 2016 Marcin Gierczak
+ * http://www.viewdesic.com
+ * =================================================
+ */
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+html {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+/* view content center */
+
+.vs-center-wrap {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.vs-center {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* mainviews */
+
+.mainbag {
+    position: relative; /* for any left/right separation */
+    overflow-y: hidden; /* for jQuery scrolls only */
+    height: 100%;
+    width: 100%; /* if 100% then you can't use left/right separation */
+}
+
+.mainview {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* subviews */
+
+.subbag {
+    overflow: hidden;
+    height: 100%;
+    white-space: nowrap;
+    font-size: 0;
+}
+
+.subview {
+    position: relative; /* important for any centered content inside subviews */
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}

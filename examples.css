@@ -1,0 +1,374 @@
+/*! 
+ * =================================================
+ * viewScroller - for Examples CCS
+ * Version: 2.0.1
+ * Copyright (c) 2016 Marcin Gierczak
+ * http://www.viewdesic.com
+ * =================================================
+ */
+
+/* Reset styles */
+
+button,
+input {
+    font: inherit;
+    margin: 0;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner {
+    border-style: none;
+}
+
+/* Custom views styles */
+
+.view1 {
+    background-color: #30D5C7;
+}
+
+.view2 {
+    background-color: #2ABAAE;
+}
+
+.view3 {
+    background-color: #1C7B73;
+}
+
+.view4 {
+    background-color: #13544F;
+}
+
+.view5 {
+    background-color: #28D5CF;
+}
+
+.subview-a {
+    background-color: #2ABAAE;
+}
+
+.subview-b {
+    background-color: #0EAB91;
+}
+
+.subview-c {
+    background-color: #13AD58;
+}
+
+.subview-d {
+    background-color: #45bca1;
+}
+
+.subview-e {
+    background-color: #23dc94;
+}
+
+/* GUI */
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -75px;
+    margin-left: -100px;
+    width: 200px;
+    height: 150px;
+    background-color: #ff3547;
+    border-radius: 10px;
+    box-shadow: 5px 4px 0 0 rgba(179, 13, 35, 1);
+}
+
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -35px;
+    margin-left: -100px;
+    width: 200px;
+    height: 70px;
+    font-family: Arial, Tahoma;
+    font-size: 32px;
+    text-align: center;
+}
+
+.menu {
+    position: fixed;
+    margin-top: 50px;
+    font-family: Arial, Tahoma;
+    font-size: 13px;
+    z-index: 10;
+}
+
+.menu-text {
+    position: fixed;
+    bottom: 10px;
+    line-height: 28px;
+    font-family: Arial, Tahoma;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 5px 5px;
+    background-color: #fff;
+    z-index: 20;
+}
+
+.panel {
+    position: fixed;
+    height: 100%;
+    width: 140px;
+    background-color: #e2face;
+}
+
+.pos {
+    font-family: Arial, Tahoma;
+    font-size: 14px;
+}
+
+.link:hover,
+.link-small:hover {
+    text-decoration: underline;
+}
+
+.link-small {
+    font-size: 11px;
+}
+
+.forkme {
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    right: 0;
+    border: 0;
+}
+
+.logo {
+    width: 80%;
+    min-width: 230px;
+    min-height: 230px;
+    max-width: 488px;
+    max-height: 488px;
+}
+
+.arrows {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.examples {
+    position: fixed;
+    top: 0;
+    left: 140px;
+    width: 200px;
+    height: 100%;
+    padding-left: 10px;
+    z-index: 10;
+    /*border-right: 10px solid #fff;*/
+    background: rgba(255, 255, 255, 0.6);
+    font-family: Arial;
+    font-size: 16px;
+}
+
+.scroll-checkbox {
+    position: relative;
+    margin-top: 25px;
+    width: 100px;
+    font-family: Arial, Tahoma;
+    font-size: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+h1 {
+    margin-left: 18px;
+    font-family: Arial, Tahoma;
+    font-size: 20px;
+    color: #0c7068;
+}
+
+ul li {
+    list-style-type: none;
+    padding-top: 5px;
+    margin-left: -20px;
+}
+
+input[type="button"] {
+    -webkit-appearance: none;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px #000;
+}
+
+input[type="button"]:hover {
+    background-color: #fff;
+}
+
+input[type="button"]:active {
+    background-color: #fff;
+    box-shadow: 0 1px #000;
+    transform: translateY(2px);
+}
+
+/* Main buttons */
+
+.btn-own {
+    padding: 10px 20px;
+    border: 0 none;
+    border-radius: 6px;
+    font-family: Arial, Tahoma;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-own:focus,
+.btn-own:active:focus,
+.btn-own.active:focus {
+    outline: 0 none;
+}
+
+.buttons-section {
+    position: relative;
+    top: 20px;
+    height: 45px;
+}
+
+.buttons-section-fxd {
+    position: fixed;
+    top: 20px;
+    height: 60px;
+}
+
+.hidepanel-button {
+    position: absolute;
+    height: 50px;
+    left: -150px;
+}
+
+.nextword-button {
+    position: absolute;
+    height: 50px;
+    left: -25px;
+}
+
+/* Standard buttons */
+
+.btn-own-changeview {
+    background: #31cde8;
+    color: #ffffff;
+}
+
+.btn-own-changeview:hover,
+.btn-own-changeview:focus,
+.btn-own-changeview:active {
+    background: #5fd4e8;
+}
+
+.btn-own-changeview:active,
+.btn-own-changeview.active {
+    background: #35a2b5;
+    box-shadow: none;
+}
+
+.btn-own-hidepanel {
+    background: #f25454;
+    color: #ffffff;
+}
+
+.btn-own-hidepanel:hover,
+.btn-own-hidepanel:focus,
+.btn-own-hidepanel:active {
+    background: #f26d6d;
+}
+
+.btn-own-hidepanel:active,
+.btn-own-hidepanel.active {
+    background: #bf4343;
+    box-shadow: none;
+}
+
+/* Raised buttons */
+
+.btn-own-changeview.raised {
+    box-shadow: 0 3px 0 0 #35a2b5;
+}
+
+.btn-own-changeview.raised:active {
+    background: #5fd4e8;
+    box-shadow: none;
+    margin-bottom: -20px;
+    margin-top: 3px;
+}
+
+.btn-own-hidepanel.raised {
+    box-shadow: 0 3px 0 0 #bf4343;
+}
+
+.btn-own-hidepanel.raised:active {
+    background: #f26d6d;
+    box-shadow: none;
+    margin-bottom: -20px;
+    margin-top: 3px;
+}
+
+@media screen and (max-height: 700px) {
+    .examples {
+        font-size: 13px;
+    }
+    .logo {
+        width: 50%;
+        min-width: 220px;
+        min-height: 220px;
+        max-width: 488px;
+        max-height: 488px;
+    }
+    .forkme {
+        width: 100px;
+        height: 100px;
+    }
+    .arrows {
+        display: none;
+    }
+    .btn-own {
+        padding: 6px 20px;
+    }
+    .buttons-section {
+        top: 0;
+        height: 31px;
+    }
+    .buttons-section-fxd {
+        top: 10px;
+        height: 20px;
+    }
+    .btn-own-changeview.raised {
+        box-shadow: 0 2px 0 0 #35a2b5;
+    }
+    .btn-own-hidepanel.raised {
+        box-shadow: 0 2px 0 0 #bf4343;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .logo {
+        width: 50%;
+        min-width: 220px;
+        min-height: 220px;
+        max-width: 488px;
+        max-height: 488px;
+    }
+    .forkme {
+        width: 100px;
+        height: 100px;
+    }
+}
