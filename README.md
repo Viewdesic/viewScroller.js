@@ -27,7 +27,7 @@ Documentation:
 - [Reporting any issue](https://github.com/viewdesic/viewScroller.js#reporting-any-issue)
 - [Websites using viewScroller.js](https://github.com/viewdesic/viewScroller.js#websites-using-viewscrollerjs)
 - [Donations](https://github.com/viewdesic/viewScroller.js#donations)
-- [License & Copyrights](https://github.com/viewdesic/viewScroller.js#license-copyrights)
+- [License & Copyrights](https://github.com/viewdesic/viewScroller.js#license--copyrights)
 
 ## Introduction
 
