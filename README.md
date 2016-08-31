@@ -85,7 +85,7 @@ There are some other definitions you must declared in your HTML file:
 **before the end of `<body>` section:**
 ```html
 <script src="jquery-3.1.0.min.js"></script>
-<script src="jquery.easing.1.3.js"></script>
+<script src="jquery.easing.min.js"></script>
 <script src="jquery.mousewheel.min.js"></script>
 ```
 or you can use CDN links for these jQuery libraries.
@@ -93,6 +93,10 @@ or you can use CDN links for these jQuery libraries.
 **after that you can put the main viewScroller.js script:**
 ```html
 <script src="viewScroller.js"></script>
+```
+or minified version:
+```html
+<script src="viewScroller.min.js"></script>
 ```
 
 ## Define HTML structure
