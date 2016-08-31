@@ -286,43 +286,43 @@ ex.: `$.fn.viewScroller.setAnimSpeedMainView(300);`
 ex.: `$.fn.viewScroller.setAnimSpeedSubView(300);`
 
 - setAnimEffectMainView(easing_func_name)
-ex.: `$.fn.viewScroller.setAnimEffectMainView(easing_func_name);`
+ex.: `$.fn.viewScroller.setAnimEffectMainView('easeInOutCubic');`
 
 - setAnimEffectSubView(easing_func_name)
-ex.: `$.fn.viewScroller.setAnimEffectSubView(easing_func_name);`
+ex.: `$.fn.viewScroller.setAnimEffectSubView('easeInOutCubic');`
 
 - setAnimEffectMainViewCss3(easing_func_name)
-ex.: `$.fn.viewScroller.setAnimEffectMainViewCss3(easing_func_name);`
+ex.: `$.fn.viewScroller.setAnimEffectMainViewCss3('ease');`
 
 - setAnimEffectSubViewCss3(easing_func_name)
-ex.: `$.fn.viewScroller.setAnimEffectSubViewCss3(easing_func_name);`
+ex.: `$.fn.viewScroller.setAnimEffectSubViewCss3('ease');`
 
 - setUseKeyboard(true/false)
-ex.: `$.fn.viewScroller.setUseKeyboard(true / false);`
+ex.: `$.fn.viewScroller.setUseKeyboard(true);`
 
 - setUseScrollbar(true/false)
-ex.: `$.fn.viewScroller.setUseScrollbar(true / false);`
+ex.: `$.fn.viewScroller.setUseScrollbar(false);`
 
 - setChangeWhenAnim(true/false)
-ex.: `$.fn.viewScroller.setChangeWhenAnim(true / false);`
+ex.: `$.fn.viewScroller.setChangeWhenAnim(true);`
 
 - setLoopSubViews(true/false)
-ex.: `$.fn.viewScroller.setLoopSubViews(true / false);`
+ex.: `$.fn.viewScroller.setLoopSubViews(true);`
 
 - setLoopMainViews(true/false)
-ex.: `$.fn.viewScroller.setLoopMainViews(true / false);`
+ex.: `$.fn.viewScroller.setLoopMainViews(true);`
 
 - setFitToView(true/false)
-ex.: `$.fn.viewScroller.setFitToView(true / false);`
+ex.: `$.fn.viewScroller.setFitToView(true);`
 
 - setTimeToFit(value)
-ex.: `$.fn.viewScroller.setTimeToFit(value);`
+ex.: `$.fn.viewScroller.setTimeToFit(800);`
 
 - setFixedWidth(value)
-ex.: `$.fn.viewScroller.setFixedWidth(value);`
+ex.: `$.fn.viewScroller.setFixedWidth(140);`
 
 - setSpaceMainBag(value)
-ex.: `$.fn.viewScroller.setSpaceMainBag(value);`
+ex.: `$.fn.viewScroller.setSpaceMainBag(140);`
 
 ### Examples of using viewScroller functions to change views:
 
@@ -392,8 +392,6 @@ var mainbag_sel = '.mainbag', // mainbag class
 ## Reporting any issue
 
 If you have some issue with this plugin just report it on the GitHub.
-
-You can also use [jsFiddle] (https://jsfiddle.net/Viewdesic/50s38drr/) to reproduce this issue.
 
 ## Websites using viewScroller.js
 
