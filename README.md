@@ -25,7 +25,7 @@ Documentation:
 - [Functions](https://github.com/viewdesic/viewScroller.js#functions)
 - [Callbacks](https://github.com/viewdesic/viewScroller.js#callbacks)
 - [Classes](https://github.com/viewdesic/viewScroller.js#classes)
-- [Reporting any issue](https://github.com/viewdesic/viewScroller.js#reporting-any-issue)
+- [Reporting issues](https://github.com/viewdesic/viewScroller.js#reporting-issues)
 - [Websites using viewScroller.js](https://github.com/viewdesic/viewScroller.js#websites-using-viewscrollerjs)
 - [Donations](https://github.com/viewdesic/viewScroller.js#donations)
 - [License & Copyrights](https://github.com/viewdesic/viewScroller.js#license--copyrights)
@@ -388,9 +388,11 @@ var mainbag_sel = '.mainbag', // mainbag class
 
 **Remember that if you want to change some of the classes inside viewScroller.js file you need to change it in your HTML structure also.**
 
-## Reporting any issue
+## Reporting issues
 
 If you have some issue with this plugin just report it on the GitHub.
+
+You can also use [jsFiddle] (https://jsfiddle.net/Viewdesic/50s38drr/) to reproduce this issue.
 
 ## Websites using viewScroller.js
 
