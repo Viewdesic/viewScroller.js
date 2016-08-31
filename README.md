@@ -67,9 +67,6 @@ This pack includes all necessary files to start:
 // Bower
 bower install viewscroller.js
 
-// npm
-npm install viewscroller.js
-
 // NuGet
 PM> Install-Package viewScroller
 ```
