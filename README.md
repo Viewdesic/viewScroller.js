@@ -79,7 +79,7 @@ If you want to use viewScroller.js remember that your HTML file must have `<!DOC
 There are some other definitions you must declared in your HTML file:
 
 **inside `<head>` section:**
-```
+```html
 <link rel="stylesheet" type="text/css" href="viewScroller.css">
 ```
 
@@ -92,7 +92,7 @@ There are some other definitions you must declared in your HTML file:
 or you can use CDN links for these jQuery libraries.
 
 **after that you can put the main viewScroller.js script:**
-```
+```html
 <script src="viewScroller.js"></script>
 ```
 
@@ -102,7 +102,7 @@ The main node of the structure is `<div class="mainbag"></div>` inside which you
 
 This example defines HTML structure with 3 mainviews (marked with vs-anchor attribute ex.: 'firstview', 'secondview', 'thirdview') and 3 subviews inside second view (marked with vs-anchor attribute ex.: 'firstsubview', 'secondsubview', 'thirdsubview'):
 
-```
+```html
 <div class="mainbag">
 	<div vs-anchor="firstview" class="mainview">View 1</div>
 	<div vs-anchor="secondview" class="mainview">
@@ -125,14 +125,14 @@ This example defines HTML structure with 3 mainviews (marked with vs-anchor attr
 To create navigation over specific mainviews or subviews use `<a href>` elements, for example:
 
 For mainviews:
-```
+```html
 <a href="#firstview" class="vs-anchor">View 1</a>
 <a href="#secondview" class="vs-anchor">View 2</a>
 <a href="#thirdview" class="vs-anchor">View 3</a>
 ```
 
 For subviews:
-```
+```html
 <div class="vs-center-wrap">
 	<div class="vs-center">
 		Subview A
@@ -151,23 +151,23 @@ For subviews:
 You must know that each `<a href ...>` element must have `vs-anchor` class.
 
 To create navigation for changing mainviews you have to use `vs-mainview-prev` or `vs-mainview-next` class, for example:
-```
+```html
 <button class="vs-mainview-prev">prev mainview</button>
 <button class="vs-mainview-next">next mainview</button>
 ```
 or
-```
+```html
 <a href="#" class="vs-mainview-prev">prev mainview</a>
 <a href="#" class="vs-mainview-next">next mainview</a>
 ```
 
 To create navigation for changing subviews you have to use `vs-subview-prev` or `vs-subview-next` class, for example:
-```
+```html
 <button class="vs-subview-prev">prev subview</button>
 <button class="vs-subview-next">next subview</button>
 ```
 or
-```
+```html
 <a href="#" class="vs-subview-prev">prev subview</a>
 <a href="#" class="vs-subview-next">next subview</a>
 ```
@@ -195,7 +195,7 @@ ex.:
 
 You can center a content inside each view using predefined classes `.vs-center-wrap` and `.vs-center`:
 
-```
+```html
 <div vs-anchor="firstview" class="mainview">
 	<div class="vs-center-wrap">
         <div class="vs-center">
@@ -208,7 +208,7 @@ You can center a content inside each view using predefined classes `.vs-center-w
 
 or you can use classes from examples.css such as `.box` and `.info`:
 
-```
+```html
 <div class="box">
 	<div class="info">
 		View 1
@@ -245,97 +245,101 @@ $('.mainbag').viewScroller({
 List of all parameters to use inside the viewScroller.js init function:
 
 ```javascript
-if (typeof params === "object") {
-	params = $.extend({
-		// Animation
-		animSpeedMainView: 700, // Animation speed of mainviews: 0 - fastest
-		animSpeedSubView: 700, // Animation speed of subviews: 0 - fastest
-		animEffectMainView: 'easeInOutCubic', // Animation effect of mainviews change - jQuery (easing)
-		animEffectSubView: 'easeInOutCubic', // Animation effect of subviews change - jQuery (easing)
-		animEffectMainViewCss3: 'ease', // Animation effect of mainviews change - CSS3 (easing)
-		animEffectSubViewCss3: 'ease', // Animation effect of subviews change - CSS3 (easing)
+$('.mainbag').viewScroller({
+	// Animation
+	animSpeedMainView: 700, // Animation speed of mainviews: 0 - fastest
+	animSpeedSubView: 700, // Animation speed of subviews: 0 - fastest
+	animEffectMainView: 'easeInOutCubic', // Animation effect of mainviews change - jQuery (easing)
+	animEffectSubView: 'easeInOutCubic', // Animation effect of subviews change - jQuery (easing)
+	animEffectMainViewCss3: 'ease', // Animation effect of mainviews change - CSS3 (easing)
+	animEffectSubViewCss3: 'ease', // Animation effect of subviews change - CSS3 (easing)
 
-		// Steering
-		useKeyboard: true, // Use keyboard to change views
-		useScrollbar: false, // Use scrollbar to change views
-		changeWhenAnim: true, // Change views when they are changing
-		loopMainViews: false, // Change horizontal views (mainviews) in loop mode
-		loopSubViews: false, // Change vertical views (subviews) in loop mode
-		fitToView: true, // Will the browser fit to the closest view (works if the useScrollbar option is true)
-		timeToFit: 1000, // Time between stop scrolling and start fitting to the closest view
+	// Steering
+	useKeyboard: true, // Use keyboard to change views
+	useScrollbar: false, // Use scrollbar to change views
+	changeWhenAnim: true, // Change views when they are changing
+	loopMainViews: false, // Change horizontal views (mainviews) in loop mode
+	loopSubViews: false, // Change vertical views (subviews) in loop mode
+	fitToView: true, // Will the browser fit to the closest view (works if the useScrollbar option is true)
+	timeToFit: 1000, // Time between stop scrolling and start fitting to the closest view
 
-		// Mainbag dimension
-		fixedWidth: 0, // (in px) width of the mainbag - if 0 - then width = 100% of window (in px) = .mainbag { width: XXX }
-		spaceMainBag: 0, // (in px) a total value of the right and the left CSS margin dimensions of the .mainbag, for example: if .mainbag { left: XXX, right: YYY} then spaceMainBag = XXX + YYY
+	// Mainbag dimension
+	fixedWidth: 0, // (in px) width of the mainbag - if 0 - then width = 100% of window (in px) = .mainbag { width: XXX }
+	spaceMainBag: 0, // (in px) a total value of the right and the left CSS margin dimensions of the .mainbag, for example: if .mainbag { left: XXX, right: YYY} then spaceMainBag = XXX + YYY
 
-		// Callbacks
-		beforeChange: null, // Callback which is called before views change
-		afterChange: null, // Callback which is called after views change
-		beforeResize: null, // Callback which is called before browser window resize
-		afterResize: null // Callback which is called after browser window resize
-	}, params);
-}
+	// Callbacks
+	beforeChange: null, // Callback which is called before views change
+	afterChange: null, // Callback which is called after views change
+	beforeResize: null, // Callback which is called before browser window resize
+	afterResize: null // Callback which is called after browser window resize
+});
 ```
 
 ### Functions
 
 List of all functions to change the most important parameters:
 
-- setAnimSpeedMainView
-`$.fn.viewScroller.setAnimSpeedMainView(value);`
-ex.: `$.fn.viewScroller.setAnimSpeedMainView(1000);`
+- setAnimSpeedMainView(value)
+ex.: `$.fn.viewScroller.setAnimSpeedMainView(300);`
 
-- setAnimSpeedSubView
-`$.fn.viewScroller.setAnimSpeedSubView(value);`
+- setAnimSpeedSubView(value)
+ex.: `$.fn.viewScroller.setAnimSpeedSubView(300);`
 
-- setAnimEffectMainView
-`$.fn.viewScroller.setAnimEffectMainView(easing_func_name);`
+- setAnimEffectMainView(easing_func_name)
+ex.: `$.fn.viewScroller.setAnimEffectMainView(easing_func_name);`
 
-- setAnimEffectSubView
-`$.fn.viewScroller.setAnimEffectSubView(easing_func_name);`
+- setAnimEffectSubView(easing_func_name)
+ex.: `$.fn.viewScroller.setAnimEffectSubView(easing_func_name);`
 
-- setAnimEffectMainViewCss3
-`$.fn.viewScroller.setAnimEffectMainViewCss3(easing_func_name);`
+- setAnimEffectMainViewCss3(easing_func_name)
+ex.: `$.fn.viewScroller.setAnimEffectMainViewCss3(easing_func_name);`
 
-- setAnimEffectSubViewCss3
-`$.fn.viewScroller.setAnimEffectSubViewCss3(easing_func_name);`
+- setAnimEffectSubViewCss3(easing_func_name)
+ex.: `$.fn.viewScroller.setAnimEffectSubViewCss3(easing_func_name);`
 
+- setUseKeyboard(true/false)
+ex.: `$.fn.viewScroller.setUseKeyboard(true / false);`
 
-- setUseKeyboard	
-`$.fn.viewScroller.setUseKeyboard(true / false);`
+- setUseScrollbar(true/false)
+ex.: `$.fn.viewScroller.setUseScrollbar(true / false);`
 
-- setUseScrollbar
-`$.fn.viewScroller.setUseScrollbar(true / false);`
+- setChangeWhenAnim(true/false)
+ex.: `$.fn.viewScroller.setChangeWhenAnim(true / false);`
 
-- setChangeWhenAnim
-`$.fn.viewScroller.setChangeWhenAnim(true / false);`
+- setLoopSubViews(true/false)
+ex.: `$.fn.viewScroller.setLoopSubViews(true / false);`
 
-- setLoopSubViews
-`$.fn.viewScroller.setLoopSubViews(true / false);`
+- setLoopMainViews(true/false)
+ex.: `$.fn.viewScroller.setLoopMainViews(true / false);`
 
-- setLoopMainViews
-`$.fn.viewScroller.setLoopMainViews(true / false);`
+- setFitToView(true/false)
+ex.: `$.fn.viewScroller.setFitToView(true / false);`
 
-- setFitToView
-`$.fn.viewScroller.setFitToView(true / false);`
+- setTimeToFit(value)
+ex.: `$.fn.viewScroller.setTimeToFit(value);`
 
-- setTimeToFit
-`$.fn.viewScroller.setTimeToFit(value);`
+- setFixedWidth(value)
+ex.: `$.fn.viewScroller.setFixedWidth(value);`
 
-- setFixedWidth
-`$.fn.viewScroller.setFixedWidth(value);`
+- setSpaceMainBag(value)
+ex.: `$.fn.viewScroller.setSpaceMainBag(value);`
 
-- setSpaceMainBag
-`$.fn.viewScroller.setSpaceMainBag(value);`
+###Examples of using viewScroller functions to change views:
 
-// Examples of using viewScroller functions
-            //$.fn.viewScroller.showMainView('next');
-            //$.fn.viewScroller.showSubView(1, 'next');
-            //$.fn.viewScroller.showView('s-subview-2');
+- showMainView('next'/'prev')
+ex.: `$.fn.viewScroller.showMainView('next');`
+
+- showSubView(nbr_of_subbag, 'next'/'prev')
+ex.: `$.fn.viewScroller.showSubView(1, 'next');`
+
+- showView(anchor_name)
+ex.: `$.fn.viewScroller.showView('s-subview-2');`
 
 ### Callbacks
 
-You can use callbacks to take some action, for example:
+There are four predefined callbacks.
+
+You can use it to take some action, for example:
 
 ```javascript
 $('.mainbag').viewScroller({
@@ -354,39 +358,14 @@ $('.mainbag').viewScroller({
 });
 ```
 
-List of all callbacks to use inside the viewScroller.js init function:
+There is a possibility to cancel views change by returning `false` on the beforeChange function:
 
-- beforeChange
-Callback which is called before change views
-ex.
-```javascript
-
-```
-You can cancel the views change by returning `false` on the beforeChange function:
 ```javascript
 $('.mainbag').viewScroller({
 	beforeChange: function() {
 		return false; // It means that views changing will be terminated
 	}
 });
-```
-
-- afterChange
-Callback which is called aftre change views
-```javascript
-
-```
-
-- beforeResize
-Callback which is called before resize browser window
-```javascript
-
-```
-
-- afterResize
-Callback which is called after resize browser window
-```javascript
-
 ```
 
 ### Predefined classes
@@ -408,7 +387,7 @@ var mainbag_sel = '.mainbag', // mainbag class
 	getallmainviews_sel = mainbag_sel + '>' + mainview_sel, // Select all mainviews from the mainbag
 ```
 
-**Remember that if you want to change some of the classes you need to change it in your HTML structure also.**
+**Remember that if you want to change some of the classes inside viewScroller.js file you need to change it in your HTML structure also.**
 
 ### Reporting any issue
 
@@ -418,7 +397,7 @@ You can also use [jsFiddle] (https://jsfiddle.net/Viewdesic/50s38drr/) to reprod
 
 ## Websites using viewScroller.js
 
-If you want to use viewScroller.js plugin on your site, <a href="mailto:mrcin.gierczak@viewdesic.com">let me know</a>.
+If you want to use viewScroller.js plugin on your site, <a href="mailto:marcin.gierczak@viewdesic.com">let me know</a>.
 
 I will put your site address listed below :)
 
@@ -455,6 +434,5 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ###IMPORTANT!
 **If you want to make any modification in js/css files remember to kept intact all copyright comments.**
-**If you minify js/css files remember to put copyright information at the begining of these files.**
 
-All images are my property and can't be use outside this project.
+**If you minify js/css files remember to put copyright information at the begining of these files.**
