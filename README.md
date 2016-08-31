@@ -1,6 +1,6 @@
 # viewScroller.js
 
-![preview](https://github.com/viewdesic/viewscroller.js/images/viewScroller.jpg)
+![preview](https://github.com/Viewdesic/viewScroller.js/blob/master/images/viewScroller.jpg?raw=true)
 
 ![viewScroller.js version](http://img.shields.io/badge/viewScroller.js-v2.0.1-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
