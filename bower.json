@@ -1,0 +1,37 @@
+{
+    "name": "viewscroller.js",
+    "homepage": "http://www.viewdesic.com/viewscroller/",
+    "authors": [
+        "Marcin Gierczak https://github.com/viewdesic"
+    ],
+    "description": "Improve your websites using fullpage scrolling",
+    "main": [
+        "viewScroller.js",
+        "viewScroller.min.js",
+        "viewScroller.css",
+		"viewScroller.min.css",
+        "jquery.easing.min.js",
+        "jquery.mousewheel.min.js"
+    ],
+    "keywords": [
+        "scrolling",
+        "jquery",
+        "one_page",
+        "one_page_application",
+        "changing",
+        "views",
+        "fullpage",
+        "fullsite",
+        "onepage"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "examples"
+    ],
+    "dependencies": {
+        "jquery": ">=1.6.0"
+    }
+}
