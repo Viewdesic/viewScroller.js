@@ -53,6 +53,7 @@ This pack includes all necessary files to start:
 - [jQuery mousewheel](https://plugins.jquery.com/mousewheel/) (3.1.13 minimum)
 - jQuery easing (1.3 minimum)
 - viewScroller.css
+- viewScroller.min.css
 - viewScroller.js
 - viewScroller.min.js
 - index.html (main sample website using the viewScroller plugin)
