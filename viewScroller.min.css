@@ -1,0 +1,8 @@
+/*! 
+ * =================================================
+ * viewScroller
+ * Version: 2.0.1
+ * Copyright (c) 2016 Marcin Gierczak
+ * http://www.viewdesic.com
+ * =================================================
+ */.mainbag,html{overflow-y:hidden}.mainbag,.mainview,.subview{position:relative}.mainbag,.mainview,.subview,.vs-center-wrap{height:100%;width:100%}body,html{margin:0;height:100%}html{overflow-x:hidden}.vs-center-wrap{display:table}.vs-center{display:table-cell;vertical-align:middle;text-align:center}.subbag{overflow:hidden;height:100%;white-space:nowrap;font-size:0}.subview{display:inline-block}
