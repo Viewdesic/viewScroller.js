@@ -83,8 +83,8 @@ There are some other definitions you must declared in your HTML file:
 <link rel="stylesheet" type="text/css" href="viewScroller.css">
 ```
 
-**before end `<body>` section:**
-```
+**before the end of `<body>` section:**
+```html
 <script src="jquery-3.1.0.min.js"></script>
 <script src="jquery.easing.1.3.js"></script>
 <script src="jquery.mousewheel.min.js"></script>
@@ -453,10 +453,8 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**
 ###IMPORTANT!
-If you want to make any modification in js/css files remember to kept intact all copyright comments.
-If you minify js/css files remember to put copyright information at the begining of these files.
-**
+**If you want to make any modification in js/css files remember to kept intact all copyright comments.**
+**If you minify js/css files remember to put copyright information at the begining of these files.**
 
 All images are my property and can't be use outside this project.
