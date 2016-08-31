@@ -10,6 +10,7 @@ This is small and easy to use solution that allows you to create fullpage scroll
 - [Live demo](http://www.viewdesic.com/viewscroller/)
 
 If you like it, please, donate it!
+
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FNKU5V3KF9X2G)
 
 Documentation:
