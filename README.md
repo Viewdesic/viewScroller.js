@@ -177,16 +177,18 @@ or
 
 Moreover you can change views programmatically using built-in functions:
 
-`$.fn.viewScroller.showMainView('next' / 'prev');
-ex.: 
+`$.fn.viewScroller.showMainView('next' / 'prev');`
+ex.:
 `$.fn.viewScroller.showMainView('next');`
 
 or
 
 `$.fn.viewScroller.showSubView(bag-number, 'next' / 'prev');`
 ex.:
-`var currentBagIndex = getCurrentViewIdx();
-$.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');`
+```javascript
+var currentBagIndex = getCurrentViewIdx();
+$.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');
+```
 
 or
 
