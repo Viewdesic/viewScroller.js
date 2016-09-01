@@ -26,6 +26,7 @@ If you like it, please, donate it!
 - [Functions](https://github.com/viewdesic/viewScroller.js#functions)
 - [Callbacks](https://github.com/viewdesic/viewScroller.js#callbacks)
 - [Classes](https://github.com/viewdesic/viewScroller.js#classes)
+- [Layouts](https://github.com/viewdesic/viewScroller.js#layouts)
 - [Reporting issues](https://github.com/viewdesic/viewScroller.js#reporting-issues)
 - [Websites using viewScroller.js](https://github.com/viewdesic/viewScroller.js#websites-using-viewscrollerjs)
 - [Donations](https://github.com/viewdesic/viewScroller.js#donations)
@@ -402,6 +403,13 @@ var mainbag_sel = '.mainbag', // mainbag class
 ```
 
 **Remember that if you want to change some of the classes inside viewScroller.js file you need to change it in your HTML structure also.**
+
+## Layouts
+
+You can use viewScroller in different layouts:
+
+| ![example](/images/1.png)  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 ## Reporting issues
 
