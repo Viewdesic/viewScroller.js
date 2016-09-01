@@ -411,7 +411,8 @@ You can use viewScroller.js in different layouts.
 Look at these samples:
 (.mainbag - includes HTML scrolling views stucture)
 
-**space from the left window corner: 100px, width of mainbag = 100% window width - 100px **
+**space from the left window corner: 100px, width of mainbag = rest space of the window**
+
 ![example](/images/1.gif)
 ```javascript
 $('.mainbag').css({
@@ -420,7 +421,8 @@ $('.mainbag').css({
 $.fn.viewScroller.setSpaceMainBag(100); // Sets 100px space
 ```
 
-**space from the right window corner: 100px, width of mainbag = 100% window width - 100px **
+**space from the right window corner: 100px, width of mainbag = rest space of the window**
+
 ![example](/images/2.gif)
 ```javascript
 $('.mainbag').css({
