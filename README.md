@@ -411,8 +411,7 @@ You can use viewScroller.js in different layouts.
 Look at these examples:
 (.mainbag - class that includes HTML scrolling views stucture)
 
-### Layout 1
-[Live demo](http://www.viewdesic.com/viewscroller/index.html))
+### Layout 1 [Live demo](http://www.viewdesic.com/viewscroller/index.html))
 **space from the left window corner: 100px, width of mainbag = rest space of the window**
 
 ![example](/images/1.gif)
@@ -424,7 +423,7 @@ $.fn.viewScroller.setSpaceMainBag(100); // Sets 100px space
 ```
 
 ### Layout 2 ([Live demo](http://www.viewdesic.com/viewscroller/examples/panel-right.html))
-- **space from the right window corner: 100px, width of mainbag = rest space of the window**
+**space from the right window corner: 100px, width of mainbag = rest space of the window**
 
 ![example](/images/2.gif)
 ```javascript
@@ -435,7 +434,7 @@ $.fn.viewScroller.setSpaceMainBag(100); // Sets 100px space
 ```
 
 ### Layout 3 ([Live demo](http://www.viewdesic.com/viewscroller/examples/panel-left-right.html))
-- **space from the right window corner: 100px, space from the left window corner: 100px, width of mainbag = rest space of the window**
+**space from the right window corner: 100px, space from the left window corner: 100px, width of mainbag = rest space of the window**
 
 ![example](/images/3.gif)
 ```javascript
@@ -447,7 +446,7 @@ $.fn.viewScroller.setSpaceMainBag(280); // Sets 200px space
 ```
 
 ### Layout 4 ([Live demo](http://www.viewdesic.com/viewscroller/examples/panel-right-fixed.html))
-- **space from the right window corner: 100px, width of mainbag is fixed = 350px**
+**space from the right window corner: 100px, width of mainbag is fixed = 350px**
 
 ![example](/images/4.gif)
 ```javascript
