@@ -126,6 +126,8 @@ This example defines HTML structure with 3 mainviews (marked with vs-anchor attr
 - All subviews must be placed inside `<div class="subbag"></div>` wrapper.
 - Each view (mainview and subview) must have it's own `vs-anchor` attribute which is equivalent of ID attribute and it's value must be unique in the whole document. This attribute enables us to navigate views.
 
+## Navigation
+
 To create navigation over specific mainviews or subviews use `<a href>` elements, for example:
 
 For mainviews:
