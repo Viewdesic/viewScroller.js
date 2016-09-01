@@ -411,7 +411,7 @@ You can use viewScroller.js in different layouts.
 Look at these examples:
 (.mainbag - class that includes HTML scrolling views stucture)
 
-### Layout 1 [Live demo](http://www.viewdesic.com/viewscroller/index.html))
+### Layout 1 ([Live demo](http://www.viewdesic.com/viewscroller/index.html))
 **space from the left window corner: 100px, width of mainbag = rest space of the window**
 
 ![example](/images/1.gif)
