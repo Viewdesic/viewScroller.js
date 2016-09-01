@@ -13,13 +13,14 @@ If you like it, please, donate it!
 
 [![Donate](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FNKU5V3KF9X2G)
 
-Documentation:
+## Documentation
 
 - [Introduction](https://github.com/viewdesic/viewScroller.js#introduction)
 - [Compatibility](https://github.com/viewdesic/viewScroller.js#compatibility)
 - [Installation](https://github.com/viewdesic/viewScroller.js#installation)
 - [Libraries](https://github.com/viewdesic/viewScroller.js#libraries)
 - [Define HTML structure](https://github.com/viewdesic/viewScroller.js#define-html-structure)
+- [Navigation](https://github.com/viewdesic/viewScroller.js#navigation)
 - [Initialization](https://github.com/viewdesic/viewScroller.js#initialization)
 - [Parameters](https://github.com/viewdesic/viewScroller.js#parameters)
 - [Functions](https://github.com/viewdesic/viewScroller.js#functions)
@@ -177,14 +178,16 @@ or
 
 Moreover you can change views programmatically using built-in functions:
 
+- Show next/previous mainview
 `$.fn.viewScroller.showMainView('next' / 'prev');`
-ex.:
+
+example:
 `$.fn.viewScroller.showMainView('next');`
 
-or
-
+- Show next/previous subview
 `$.fn.viewScroller.showSubView(bag-number, 'next' / 'prev');`
-ex.:
+
+example:
 ```javascript
 var currentBagIndex = getCurrentViewIdx();
 $.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');
@@ -193,7 +196,8 @@ $.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');
 or
 
 `$.fn.viewScroller.showView(anchor);`
-ex.:
+
+example:
 `$.fn.viewScroller.showView('subview-b');`
 
 ## Center content of the view
