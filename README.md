@@ -332,17 +332,6 @@ ex.: `$.fn.viewScroller.setFixedWidth(140);`
 - setSpaceMainBag(value)
 ex.: `$.fn.viewScroller.setSpaceMainBag(140);`
 
-### Examples of using viewScroller functions to change views:
-
-- showMainView('next'/'prev')
-ex.: `$.fn.viewScroller.showMainView('next');`
-
-- showSubView(nbr_of_subbag, 'next'/'prev')
-ex.: `$.fn.viewScroller.showSubView(1, 'next');`
-
-- showView(anchor_name)
-ex.: `$.fn.viewScroller.showView('s-subview-2');`
-
 ## Callbacks
 
 There are four predefined callbacks.
