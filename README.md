@@ -406,10 +406,8 @@ var mainbag_sel = '.mainbag', // mainbag class
 
 ## Layouts
 
-You can use viewScroller in different layouts:
+You can use viewScroller.js in different layouts:
 
-sasas | asas
-------- | -----------
 ![example](/images/1.gif)  | Content Cell
 Content Cell  | Content Cell
 
