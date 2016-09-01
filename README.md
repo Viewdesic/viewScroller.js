@@ -181,11 +181,13 @@ or
 Moreover you can change views programmatically using built-in functions:
 
 **Show next/previous mainview:**                           
+
 `$.fn.viewScroller.showMainView('next' / 'prev');`                        
 example:                                 
 `$.fn.viewScroller.showMainView('next');`
 
 **Show next/previous subview:**                           
+
 `$.fn.viewScroller.showSubView(bag-number, 'next' / 'prev');`                      
 example:                            
 ```javascript
@@ -194,6 +196,7 @@ $.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');
 ```
 
 **Show specific view using anchor name:**                     
+
 `$.fn.viewScroller.showView(anchor);`                                    
 
 ## Center content of the view
