@@ -411,7 +411,7 @@ You can use viewScroller.js in different layouts.
 Look at these examples:
 (.mainbag - class that includes HTML scrolling views stucture)
 
-#### Layout 1
+### Layout 1 ([Live demo](http://www.viewdesic.com/viewscroller/index.html))
 **space from the left window corner: 100px, width of mainbag = rest space of the window**
 
 ![example](/images/1.gif)
@@ -422,8 +422,7 @@ $('.mainbag').css({
 $.fn.viewScroller.setSpaceMainBag(100); // Sets 100px space
 ```
 
-[Live demo](http://www.viewdesic.com/viewscroller/examples/index.html)
-
+### Layout 2 ([Live demo](http://www.viewdesic.com/viewscroller/examples/panel-right.html))
 - **space from the right window corner: 100px, width of mainbag = rest space of the window**
 
 ![example](/images/2.gif)
@@ -434,8 +433,7 @@ $('.mainbag').css({
 $.fn.viewScroller.setSpaceMainBag(100); // Sets 100px space
 ```
 
-[Live demo](http://www.viewdesic.com/viewscroller/examples/panel-right.html)
-
+### Layout 3 ([Live demo](http://www.viewdesic.com/viewscroller/examples/panel-left-right.html))
 - **space from the right window corner: 100px, space from the left window corner: 100px, width of mainbag = rest space of the window**
 
 ![example](/images/3.gif)
@@ -447,8 +445,7 @@ $('.mainbag').css({
 $.fn.viewScroller.setSpaceMainBag(280); // Sets 200px space
 ```
 
-[Live demo](http://www.viewdesic.com/viewscroller/examples/panel-left-right.html)
-
+### Layout 4 ([Live demo](http://www.viewdesic.com/viewscroller/examples/panel-right-fixed.html))
 - **space from the right window corner: 100px, width of mainbag is fixed = 350px**
 
 ![example](/images/4.gif)
@@ -465,8 +462,7 @@ $.fn.viewScroller.setSpaceMainBag(0); // Sets to 0 because of fixed width and ri
 
 Note: Only when the main HTML structure is set to the right, you must use setSpaceMainBag function with 0 value.
 
-[Live demo](http://www.viewdesic.com/viewscroller/examples/panel-right-fixed.html)
-
+### Layout 5 ([Live demo](http://www.viewdesic.com/viewscroller/examples/panel-left-fixed.html))
 **space from the left window corner: 100px, width of mainbag is fixed = 350px**
 
 ![example](/images/5.gif)
@@ -481,8 +477,7 @@ $('.mainbag').css({
 $.fn.viewScroller.setSpaceMainBag(100); // Sets to 100px because of fixed width and left margin
 ```
 
-[Live demo](http://www.viewdesic.com/viewscroller/examples/panel-left-fixed.html)
-
+### Layout 6 ([Live demo](http://www.viewdesic.com/viewscroller/examples/basic.html))
 **fullscreen, width of mainbag = 100% window width**
 
 ![example](/images/6.gif)
@@ -492,8 +487,6 @@ $('.mainbag').viewScroller({
 ```
 
 Note: When you use the fullscreen layout you don't have to declare any dimension parameters.
-
-[Live demo](http://www.viewdesic.com/viewscroller/examples/basic.html)
 
 ## Reporting issues
 
