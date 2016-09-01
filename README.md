@@ -130,14 +130,14 @@ This example defines HTML structure with 3 mainviews (marked with vs-anchor attr
 
 To create navigation over specific mainviews or subviews use `<a href>` elements, for example:
 
-For mainviews:
+**For mainviews:**
 ```html
 <a href="#firstview" class="vs-anchor">View 1</a>
 <a href="#secondview" class="vs-anchor">View 2</a>
 <a href="#thirdview" class="vs-anchor">View 3</a>
 ```
 
-For subviews:
+**For subviews:**
 ```html
 <div class="vs-center-wrap">
 	<div class="vs-center">
@@ -180,21 +180,21 @@ or
 
 Moreover you can change views programmatically using built-in functions:
 
-Show next/previous mainview:
-`$.fn.viewScroller.showMainView('next' / 'prev');`
-example:
+**Show next/previous mainview:**                           
+`$.fn.viewScroller.showMainView('next' / 'prev');`                        
+example:                                 
 `$.fn.viewScroller.showMainView('next');`
 
-Show next/previous subview:
-`$.fn.viewScroller.showSubView(bag-number, 'next' / 'prev');`
-example:
+**Show next/previous subview:**                           
+`$.fn.viewScroller.showSubView(bag-number, 'next' / 'prev');`                      
+example:                            
 ```javascript
 var currentBagIndex = getCurrentViewIdx();
 $.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');
 ```
 
-Show specific view using anchor name:
-`$.fn.viewScroller.showView(anchor);`
+**Show specific view using anchor name:**                     
+`$.fn.viewScroller.showView(anchor);`                                    
 
 ## Center content of the view
 
