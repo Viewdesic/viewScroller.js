@@ -408,8 +408,10 @@ var mainbag_sel = '.mainbag', // mainbag class
 
 You can use viewScroller in different layouts:
 
-| ![example](/images/1.png)  | Content Cell  |
-| Content Cell  | Content Cell  |
+sasas | asas
+------- | -----------
+![example](/images/1.gif)  | Content Cell
+Content Cell  | Content Cell
 
 ## Reporting issues
 
