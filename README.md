@@ -406,11 +406,28 @@ var mainbag_sel = '.mainbag', // mainbag class
 
 ## Layouts
 
-You can use viewScroller.js in different layouts:
+You can use viewScroller.js in different layouts.
 
------- | ------
-![example](/images/1.gif)  | Content Cell
-Content Cell  | Content Cell
+Look at these samples:
+(.mainbag - includes HTML scrolling views stucture)
+
+**space from the left window corner: 100px, width of mainbag = 100% window width - 100px **
+![example](/images/1.gif)
+```javascript
+$('.mainbag').css({
+	'left': '100px'
+});
+$.fn.viewScroller.setSpaceMainBag(100); // Sets 100px space
+```
+
+**space from the right window corner: 100px, width of mainbag = 100% window width - 100px **
+![example](/images/2.gif)
+```javascript
+$('.mainbag').css({
+	'right': '0px'
+});
+$.fn.viewScroller.setSpaceMainBag(100); // Sets 100px space
+```
 
 ## Reporting issues
 
