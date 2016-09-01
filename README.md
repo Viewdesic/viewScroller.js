@@ -408,8 +408,10 @@ var mainbag_sel = '.mainbag', // mainbag class
 
 You can use viewScroller.js in different layouts.
 
-Look at these samples:
+Look at these examples:
 (.mainbag - class that includes HTML scrolling views stucture)
+
+#### Layout 1
 
 **space from the left window corner: 100px, width of mainbag = rest space of the window**
 
