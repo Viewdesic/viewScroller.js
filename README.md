@@ -198,7 +198,7 @@ $.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');
 **Show specific view using anchor name:**                     
 
 `$.fn.viewScroller.showView(anchor);`                                    
-example:
+example:                                                                    
 `$.fn.viewScroller.showView('subview-b');`
 
 ## Center content of the view
