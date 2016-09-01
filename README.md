@@ -296,42 +296,55 @@ ex.: `$.fn.viewScroller.setAnimSpeedMainView(300);`
 ex.: `$.fn.viewScroller.setAnimSpeedSubView(300);`
 
 - setAnimEffectMainView(easing_func_name)
+
 ex.: `$.fn.viewScroller.setAnimEffectMainView('easeInOutCubic');`
 
 - setAnimEffectSubView(easing_func_name)
+
 ex.: `$.fn.viewScroller.setAnimEffectSubView('easeInOutCubic');`
 
 - setAnimEffectMainViewCss3(easing_func_name)
+
 ex.: `$.fn.viewScroller.setAnimEffectMainViewCss3('ease');`
 
 - setAnimEffectSubViewCss3(easing_func_name)
+
 ex.: `$.fn.viewScroller.setAnimEffectSubViewCss3('ease');`
 
 - setUseKeyboard(true/false)
+
 ex.: `$.fn.viewScroller.setUseKeyboard(true);`
 
 - setUseScrollbar(true/false)
+
 ex.: `$.fn.viewScroller.setUseScrollbar(false);`
 
 - setChangeWhenAnim(true/false)
+
 ex.: `$.fn.viewScroller.setChangeWhenAnim(true);`
 
 - setLoopSubViews(true/false)
+
 ex.: `$.fn.viewScroller.setLoopSubViews(true);`
 
 - setLoopMainViews(true/false)
+
 ex.: `$.fn.viewScroller.setLoopMainViews(true);`
 
 - setFitToView(true/false)
+
 ex.: `$.fn.viewScroller.setFitToView(true);`
 
 - setTimeToFit(value)
+
 ex.: `$.fn.viewScroller.setTimeToFit(800);`
 
 - setFixedWidth(value)
+
 ex.: `$.fn.viewScroller.setFixedWidth(140);`
 
 - setSpaceMainBag(value)
+
 ex.: `$.fn.viewScroller.setSpaceMainBag(140);`
 
 ## Callbacks
