@@ -288,9 +288,11 @@ $('.mainbag').viewScroller({
 List of all functions to change the most important parameters:
 
 - setAnimSpeedMainView(value)
+
 ex.: `$.fn.viewScroller.setAnimSpeedMainView(300);`
 
 - setAnimSpeedSubView(value)
+
 ex.: `$.fn.viewScroller.setAnimSpeedSubView(300);`
 
 - setAnimEffectMainView(easing_func_name)
