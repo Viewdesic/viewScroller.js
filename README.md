@@ -83,6 +83,10 @@ There are some other definitions you must declared in your HTML file:
 ```html
 <link rel="stylesheet" type="text/css" href="viewScroller.css">
 ```
+or minified version:
+```html
+<link rel="stylesheet" type="text/css" href="viewScroller.min.css">
+```
 
 **before the end of `<body>` section:**
 ```html
