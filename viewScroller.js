@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.0.3
+ * Version: 2.0.4
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -856,11 +856,19 @@
         };
 
         // Changes view depending on the mouse wheel direction
-        var onMouseWheel = function(e, delta) {
-            if (delta === -1) {
-                showMainView(direction.NEXT);
-            } else {
-                showMainView(direction.PREV);
+        var onMouseWheel = function(e) {
+            var wheelTime = Date.now();
+            // Calculates time for prevents scrolling many views at the same time (especially on MAC OS)
+            var timeDiff = wheelTime - startTime;
+            startTime = wheelTime;
+            // Prevents scroll when ctrl key is pressed and when the time diff is less than 100 ms
+            console.log(timeDiff);
+            if (!e.ctrlKey && timeDiff > 100) {
+                if (e.deltaY < 0) {
+                    showMainView(direction.NEXT);
+                } else {
+                    showMainView(direction.PREV);
+                }
             }
         };
 
