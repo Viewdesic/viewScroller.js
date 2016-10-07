@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.0.2
+ * Version: 2.0.3
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -177,14 +177,15 @@
             windowWidth = $window.width(), // DO NOT CHANGE!!!
             isChanging = false, // DO NOT CHANGE!!!
             isStart = false, // DO NOT CHANGE!!! Declare hidden scrolling effect
+            startTime = Date.now(), // DO NOT CHANGE!!! For mousewheel events handling
             stepViaX = 10, // Step to start scrolling a page by X axis (in px) - for touch only!
             stepViaY = 50, // Step to start scrolling a page by Y axis (in px) - for touch only!
             correctHeight = true, // Corrects height of each view when mobile browser's toolbar has been hidden/shown (this generates visual skip effect)
             css3Active = true; // CSS3 or jQuery animate will be used to change views
 
-        // --------------------
+        // ----------------------------------------
         // START SELECTOR CACHE
-        // --------------------
+        // ----------------------------------------
 
         // Selector cache function
         function SelectorCache() {
@@ -205,9 +206,9 @@
         // Creates Cache object
         var sel = new SelectorCache();
 
-        // --------------------
-        // END SELECTOR CACHE
-        // --------------------
+        // ----------------------------------------
+        // START VIEWS LOGIC
+        // ----------------------------------------
 
         // CSS3 support detection
         var detectCssTrans = function() {
@@ -763,9 +764,9 @@
             isStart = false; // Clear hidden scrolling effect
         };
 
-        // -------------------
+        // ----------------------------------------
         // START REGION EVENTS
-        // -------------------
+        // ----------------------------------------
 
         // Adds click event to all anchors with 'vs-anchor' class declared
         var bindAnchor = function() {
@@ -1004,13 +1005,9 @@
             }
         };
 
-        // -------------------
-        // END REGION EVENTS
-        // -------------------
-
-        // --------------------
+        // ----------------------------------------
         // START REGION TOUCHES
-        // --------------------
+        // ----------------------------------------
 
         var touchable = 'createTouch' in document; // Checks if your browser support touches
         var touches = []; // Includes all touches vectors
@@ -1107,7 +1104,7 @@
         // Sets current cursor position
         var onCursorMove = function(e) {
             if (!params.useScrollbar) {
-                (e.preventDefault) ? e.preventDefault(): e.returnValue = false; // preventDefault - other than IE8, returnValue - IE8
+                e.preventDefault ? e.preventDefault(): e.returnValue = false; // preventDefault - other than IE8, returnValue - IE8
             }
 
             if (touchable) {
@@ -1136,10 +1133,10 @@
             return pos;
         };
 
-        // --------------------
-        // END REGION TOUCHES
-        // --------------------
-
+        // ----------------------------------------
+        // START INIT FUNCTION
+        // ----------------------------------------
+        
         // Init function
         var init = function() {
             addIndexOf();
@@ -1179,6 +1176,10 @@
             }
             setMainbagDimWhenFixed();
         };
+        
+        // ----------------------------------------
+        // START MAIN BAG OBJECT
+        // ----------------------------------------
 
         // Main bag object
         var bagObject = function() {
