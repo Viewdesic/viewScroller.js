@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.0.4
+ * Version: 2.0.5
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -862,8 +862,7 @@
             var timeDiff = wheelTime - startTime;
             startTime = wheelTime;
             // Prevents scroll when ctrl key is pressed and when the time diff is less than 100 ms
-            console.log(timeDiff);
-            if (!e.ctrlKey && timeDiff > 100) {
+            if (!e.ctrlKey && timeDiff > 50) {
                 if (e.deltaY < 0) {
                     showMainView(direction.NEXT);
                 } else {
