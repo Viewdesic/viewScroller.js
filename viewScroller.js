@@ -861,7 +861,7 @@
             // Calculates time for prevents scrolling many views at the same time (especially on MAC OS)
             var timeDiff = wheelTime - startTime;
             startTime = wheelTime;
-            // Prevents scroll when ctrl key is pressed and when the time diff is less than 100 ms
+            // Prevents scroll when ctrl key is pressed and when the time diff is less than 50 ms
             if (!e.ctrlKey && timeDiff > 50) {
                 if (e.deltaY < 0) {
                     showMainView(direction.NEXT);
