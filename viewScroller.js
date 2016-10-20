@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.0.5
+ * Version: 2.0.6
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -568,7 +568,7 @@
         // Scrolls views on x or y axis - via CSS3
         var translateElement = function(elem, viewPos, isResize, orientation, callback) {
             if (orientation === 'x') {
-                var doResizeSubView = checkIfResize(params.animSpeedMainView, false);
+                var doResizeSubView = checkIfResize(params.animSpeedMainView, isResize);
                 elem.css({
                     '-webkit-transition': 'all ' + doResizeSubView + 'ms ' + params.animEffectSubViewCss3 + ' 0ms',
                     '-moz-transition': 'all ' + doResizeSubView + 'ms ' + params.animEffectSubViewCss3 + ' 0ms',
@@ -580,7 +580,7 @@
                     'transform': 'translate3d(' + viewPos + 'px,0,0)'
                 });
             } else {
-                var doResizeMainView = checkIfResize(params.animSpeedMainView, false);
+                var doResizeMainView = checkIfResize(params.animSpeedMainView, isResize);
                 elem.css({
                     '-webkit-transition': 'all ' + doResizeMainView + 'ms ' + params.animEffectMainViewCss3 + ' 0ms',
                     '-moz-transition': 'all ' + doResizeMainView + 'ms ' + params.animEffectMainViewCss3 + ' 0ms',
