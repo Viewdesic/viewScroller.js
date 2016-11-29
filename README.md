@@ -2,7 +2,7 @@
 
 ![preview](https://github.com/Viewdesic/viewScroller.js/blob/master/images/viewScroller.jpg?raw=true)
 
-![viewScroller.js version](http://img.shields.io/badge/viewScroller.js-v2.0.6-brightgreen.svg)
+![viewScroller.js version](http://img.shields.io/badge/viewScroller.js-v2.0.7-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 This is small and easy to use solution that allows you to create fullpage scrolling websites.
@@ -130,6 +130,7 @@ This example defines HTML structure with 3 mainviews (marked with vs-anchor attr
 - Each mainview div must have class `.mainview` and each subview div must have class `.subview`.
 - All subviews must be placed inside `<div class="subbag"></div>` wrapper.
 - Each view (mainview and subview) must have it's own `vs-anchor` attribute which is equivalent of ID attribute and it's value must be unique in the whole document. This attribute enables us to navigate views.
+- You can also use `section` or `article` elements for mainview or subview sections
 
 ## Navigation
 
