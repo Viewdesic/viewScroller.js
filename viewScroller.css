@@ -1,7 +1,7 @@
 /*! 
  * =================================================
  * viewScroller
- * Version: 2.0.6
+ * Version: 2.0.7
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -45,6 +45,9 @@ html {
     position: relative;
     height: 100%;
     width: 100%;
+    font-size: 16px;
+    vertical-align: bottom;
+    white-space: normal;
 }
 
 /* subviews */
@@ -61,4 +64,7 @@ html {
     display: inline-block;
     height: 100%;
     width: 100%;
+    font-size: 16px;
+    vertical-align: bottom;
+    white-space: normal;
 }
