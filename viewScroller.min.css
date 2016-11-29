@@ -1,9 +1,8 @@
 /*! 
  * =================================================
  * viewScroller
- * Version: 2.0.6
+ * Version: 2.0.7
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
- */
-.mainbag,html{overflow-y:hidden}.mainbag,.mainview,.subview{position:relative}.mainbag,.mainview,.subview,.vs-center-wrap{height:100%;width:100%}body,html{margin:0;height:100%}html{overflow-x:hidden}.vs-center-wrap{display:table}.vs-center{display:table-cell;vertical-align:middle;text-align:center}.subbag{overflow:hidden;height:100%;white-space:nowrap;font-size:0}.subview{display:inline-block}
+ */.mainbag,html{overflow-y:hidden}body,html{margin:0;height:100%}html{overflow-x:hidden}.vs-center-wrap{display:table;width:100%;height:100%}.vs-center{display:table-cell;vertical-align:middle;text-align:center}.mainview,.subview{position:relative;height:100%;width:100%;vertical-align:bottom}.mainbag{position:relative;height:100%;width:100%}.mainview{font-size:16px;white-space:normal}.subbag{overflow:hidden;height:100%;white-space:nowrap;font-size:0}.subview{display:inline-block;font-size:16px;white-space:normal}
