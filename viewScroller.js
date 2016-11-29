@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.0.6
+ * Version: 2.0.7
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -318,13 +318,14 @@
         // Gets current bag index for the current url #id (view name)
         var getCurrentBagIndex = function(urlViewName) {
             var subviews = [];
-            sel.get('div[vs-anchor=' + urlViewName + ']').find(sel.get(getallsubviews_sel)).each(function(idx) {
+            var anchor_sel = 'div[vs-anchor=' + urlViewName + '], section[vs-anchor=' + urlViewName + '], article[vs-anchor=' + urlViewName + ']';
+            sel.get(anchor_sel).find(sel.get(getallsubviews_sel)).each(function(idx) {
                 subviews.push($(this).attr('vs-anchor'));
             });
             if (subviews.length > 0) {
                 return getBagIndex(subviews[0]);
             } else if (subviews.length === 0) {
-                sel.get('div[vs-anchor=' + urlViewName + ']').parents(sel.get(subbag_sel)).each(function(idx) {
+                sel.get(anchor_sel).parents(sel.get(subbag_sel)).each(function(idx) {
                     subviews.push($(this).attr('class'));
                 });
                 if (subviews.length > 0) {
@@ -989,11 +990,13 @@
                         }
                         break;
                     case RIGHT_KEY_CODE:
+                        if (currentBagIndex === 0) currentBagIndex = 1;
                         if (currentBagIndex > -1) {
                             showSubView(currentBagIndex, direction.NEXT);
                         }
                         break;
                     case LEFT_KEY_CODE:
+                        if (currentBagIndex === 0) currentBagIndex = 1;
                         if (currentBagIndex > -1) {
                             showSubView(currentBagIndex, direction.PREV);
                         }
