@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.0.7
+ * Version: 2.0.8
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -633,40 +633,33 @@
             if (bagObj.viewsData.views.length > 0 && typeof viewName !== 'undefined') {
                 var indexOfView = bagObj.viewsData.views.indexOf(viewName),
                     viewPosition = bagObj.viewsData.viewsPos[indexOfView],
+                    viewType = bagObj.viewsData.bagType,
                     viewSelector = bagObj.viewsData.container,
                     scrollPos = 0;
 
-                // Releases beforeEvent
                 if (isStart || (byAnchor === false && ((typeof isResize === 'undefined' && isScroll === false) || (bagObj.viewsData.activeView !== viewName && isResize === false)))) {
-                    var stop = false;
-                    if (typeof params.beforeChange === 'function') {
-                        stop = params.beforeChange();
-                    }
-                    times++;
-                    if (stop) { // Stop changing views if beforeChange function returns false
-                        return false;
-                    }
+                    callFuncBeforeChange();
                 }
 
-                if (bagObj.viewsData.container === mainbag_sel) {
+                if (viewSelector === mainbag_sel) {
                     currentMainView = viewName.split('#')[1];
                 } else {
                     if (!isStart) {
-                        if (!isResize && currentMainView !== bagObj.viewsData.container.split('|')[2]) {
+                        if (!isResize && currentMainView !== viewSelector.split('|')[2]) {
                             byAnchor = true; // Informs that changing view is fired by anchor
-                            changeView(allBagObjs[0], bagObj.viewsData.container.split('|')[3] + '#' + bagObj.viewsData.container.split('|')[2], false, false);
+                            changeView(allBagObjs[0], viewSelector.split('|')[3] + '#' + viewSelector.split('|')[2], false, false); // Change view when anchor is changed
                         }
-                        currentMainView = bagObj.viewsData.container.split('|')[2];
+                        currentMainView = viewSelector.split('|')[2];
                     }
                 }
 
                 if (!isResize && !isStart) {
-                    if (window.location.hash !== viewName.split('#' [1])) {
+                    if (window.location.hash !== viewName.split('#')[1]) {
                         setHash(viewName.split('#')[1], true); // Also changes hash to the current view, ex. view-2
                     }
                 }
 
-                if (bagObj.viewsData.bagType === bagType.SUBBAG) {
+                if (viewType === bagType.SUBBAG) {
                     var container = viewSelector.split('|')[0],
                         containerNbr = viewSelector.split('|')[1];
                     viewSelector = sel.get((container + '-' + containerNbr)); // Gets subbag container from the DOM
@@ -677,7 +670,7 @@
                 var elem = viewSelector; // Get current view container
                 isChanging = true; // Prevent of scrolling views when they are still animate
 
-                if (bagObj.viewsData.bagType === bagType.SUBBAG) {
+                if (viewType === bagType.SUBBAG) {
                     if (!css3Active) {
                         // Scroll via jQuery animation
                         animatejQuery(elem.parent(), viewPosition, isResize, 'x', function() {
@@ -733,13 +726,7 @@
 
         // Calls when jQuery or CSS3 animation is over
         var animationDone = function(isScroll, bagObj, viewName) {
-            // Releases afterEvent
-            if (times > 0) {
-                if (typeof params.afterChange === 'function') {
-                    params.afterChange();
-                }
-                times -= 1; // this variable counts how many beforeChange callback has been invoked
-            }
+            callFuncAfterChange();
             if (!params.useScrollbar && !isScroll) {} else {
                 stopHashEvent = false;
                 unbindResize();
@@ -763,6 +750,28 @@
             }
             isChanging = false; // Prevent of scrolling views when they are changing
             isStart = false; // Clear hidden scrolling effect
+        };
+        
+        // Calls function before change view
+        var callFuncBeforeChange = function() {
+            var stop = false;
+            if (typeof params.beforeChange === 'function') {
+                stop = params.beforeChange();
+            }
+            times++;
+            if (stop) { // Stop changing views if beforeChange function returns false
+                return false;
+            }
+        };
+
+        // Calls function after change view
+        var callFuncAfterChange = function() {
+            if (times > 0) {
+                if (typeof params.afterChange === 'function') {
+                    params.afterChange();
+                }
+                times -= 1; // this variable counts how many beforeChange callback has been invoked
+            }
         };
 
         // ----------------------------------------
