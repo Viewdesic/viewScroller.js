@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Copyright (c) 2016 Marcin Gierczak (www.viewdesic.com)">
+    <meta name="description" content="viewScroller plugin by Marcin Gierczak. This plugin allows creating fullscreen scrollable webpage." />
+    <meta name="keywords" content="viewScroller, fullscreen, html fullpage, scroll page, page scrolling, page scroll, full scroll" />
+    <title>viewScroller - Panel right fixed example</title>
+    <link rel="stylesheet" type="text/css" href="../viewScroller.css">
+    <link rel="stylesheet" type="text/css" href="../examples.css">
+    <style>
+        /* Styles specific for this example */
+        
+        body {
+            background-image: url('../images/pattern.png');
+            background-repeat: repeat;
+        }
+        
+        .menu {
+            right: 20px;
+        }
+        
+        .menu-text {
+            left: 20px;
+        }
+        
+        .panel {
+            right: 0;
+        }
+        
+        .forkme {
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="forkme" href="https://github.com/Viewdesic/viewScroller.js"><img src="../images/forkme-github-left.png" alt="Fork me on GitHub" class="forkme"></a>
+
+    <div class="menu">
+        <div class="buttons-section-fxd">
+            <button id="hidePanel" class="btn-own btn-own-hidepanel raised center">&gt;&gt;</button>
+        </div>
+        <div class="buttons-section">
+            <a href="#view-1" class="vs-anchor"><button class="btn-own btn-own-changeview raised center">View 1</button></a>
+        </div>
+        <div class="buttons-section">
+            <a href="#view-2" class="vs-anchor"><button class="btn-own btn-own-changeview raised center">View 2</button></a>
+        </div>
+        <div class="buttons-section">
+            <a href="#view-3" class="vs-anchor"><button class="btn-own btn-own-changeview raised center">View 3</button></a>
+        </div>
+        <div class="buttons-section">
+            <a href="#view-4" class="vs-anchor"><button class="btn-own btn-own-changeview raised center">View 4</button></a>
+        </div>
+        <div class="buttons-section">
+            <a href="#view-5" class="vs-anchor"><button class="btn-own btn-own-changeview raised center">View 5</button></a>
+        </div>
+        <div class="buttons-section">
+            <button class="btn-own btn-own-changeview raised center vs-mainview-prev">prev</button>
+        </div>
+        <div class="buttons-section">
+            <button class="btn-own btn-own-changeview raised center vs-mainview-next">next</button>
+        </div>
+        <div class="scroll-checkbox">
+            <input id="scroll" type="checkbox" checked>
+            <label for="scroll">Scroll views when they are changing</label>
+        </div>
+    </div>
+
+    <div class="menu-text">
+        <a href="http://www.viewdesic.com/viewscroller/distribution/viewscroller.zip"><b>Download</b></a><br>
+        <a href="#" class="examples-show">Examples</a><br>
+        <a href="https://github.com/Viewdesic/viewScroller.js">Documentation</a><br>
+        <a href="mailto:marcin.gierczak@viewdesic.com">Contact</a>
+    </div>
+
+    <img src="../images/arrows.png" alt="You can use arrows to change a view" class="arrows">
+
+    <div class="panel"></div>
+
+    <div class="examples">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="basic.html" class="link">Basic</a></li>
+            <li><a href="basic-scrollbar.html" class="link">Basic with scrollbar</a></li>
+            <li><a href="../index.html" class="link">Panel left</a></li>
+            <li><a href="panel-right.html" class="link">Panel right</a></li>
+            <li><a href="panel-left-right.html" class="link">Panel left-right</a></li>
+            <li><a href="panel-left-fixed.html" class="link">Panel left <b>fixed</b></a></li>
+            <li><a href="panel-right-fixed.html" class="link">Panel right <b>fixed</b></a></li>
+            <li><a href="backgrounds.html" class="link">Backgrounds</a></li>
+            <li><a href="views-normal-page.html" class="link">Views + normal page</a></li>
+            <li><a href="header-footer.html" class="link">Header + footer page</a></li>
+            <li><a href="all-functions.html" class="link">All functions</a></li>
+            <br>
+            <li><a href="#" onclick="javascript: $('.examples').hide()" class="link-small">&lt;&lt; close examples</a></li>
+        </ul>
+    </div>
+
+    <div class="mainbag">
+        <div vs-anchor="view-1" class="mainview view1">
+            <div class="vs-center-wrap">
+                <div class="vs-center">
+                    <img src="../images/viewscroller-logo.png" alt="viewScroller logo" class="logo">
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="view-2" class="mainview">
+            <div class="subbag">
+                <div vs-anchor="subview-a" class="subview subview-a">
+                    <div class="box">
+                        <div class="info">
+                            Subview A
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-b" class="subview subview-b">
+                    <div class="box">
+                        <div class="info">
+                            Subview B
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-c" class="subview subview-c">
+                    <div class="box">
+                        <div class="info">
+                            Subview C
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="view-3" class="mainview view3">
+            <div class="box">
+                <div class="info">View 3</div>
+            </div>
+        </div>
+        <div vs-anchor="view-4" class="mainview">
+            <div class="subbag">
+                <div vs-anchor="subview-d" class="subview subview-d">
+                    <div class="box">
+                        <div class="info">
+                            Subview D
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-d" class="vs-anchor"><input type="button" value="D"></a>
+                                <a href="#subview-e" class="vs-anchor"><input type="button" value="E"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-e" class="subview subview-e">
+                    <div class="box">
+                        <div class="info">
+                            Subview E
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-d" class="vs-anchor"><input type="button" value="D"></a>
+                                <a href="#subview-e" class="vs-anchor"><input type="button" value="E"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="view-5" class="mainview view5">
+            <div class="box">
+                <div class="info">View 5</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../jquery-3.1.0.min.js"></script>
+    <script src="../jquery.easing.min.js"></script>
+    <script src="../jquery.mousewheel.min.js"></script>
+    <script src="../viewScroller.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            // Sets viewScroller
+            $('.mainbag').viewScroller({
+                useScrollbar: false
+            });
+
+            // Sets fixed width of mainview
+            $.fn.viewScroller.setFixedWidth(350);
+
+            // Sets start params for MENU
+            $('.mainbag').css({
+                'right': '140px'
+            });
+            $.fn.viewScroller.setSpaceMainBag(0); // Sets to 0 because of fixed width and right margin
+
+            // Show / hide menu panel
+            $('#hidePanel').on('click', function() {
+                if ($('.panel').css('display') !== 'none') {
+                    $('#hidePanel').text('<<');
+                    $('.panel').hide();
+                    $('.mainbag').css({
+                        'right': '0px',
+                    });
+                    $.fn.viewScroller.setSpaceMainBag(0); // sets mainbag's width when panel is closed
+                } else {
+                    $('#hidePanel').text('>>');
+                    $('.panel').show();
+                    $('.mainbag').css({
+                        'right': '140px',
+                    });
+                    $.fn.viewScroller.setSpaceMainBag(140); // sets mainbag's width when panel is open
+                }
+            });
+
+            //Show / hide examples panel
+            $('.examples').hide();
+            $('.examples-show').click(function() {
+                $('.examples').toggle();
+            });
+
+            // Turnon / turnoff the scroll views when they are animate
+            $('#scroll').on('click', function() {
+                if ($('#scroll').prop("checked")) {
+                    $.fn.viewScroller.setChangeWhenAnim(true);
+                } else {
+                    $.fn.viewScroller.setChangeWhenAnim(false);
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

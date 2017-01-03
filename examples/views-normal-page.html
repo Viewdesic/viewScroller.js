@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Copyright (c) 2016 Marcin Gierczak (www.viewdesic.com)">
+    <meta name="description" content="viewScroller plugin by Marcin Gierczak. This plugin allows creating fullscreen scrollable webpage." />
+    <meta name="keywords" content="viewScroller, fullscreen, html fullpage, scroll page, page scrolling, page scroll, full scroll" />
+    <title>viewScroller - Views + Normal page example</title>
+    <link rel="stylesheet" type="text/css" href="../viewScroller.css">
+    <style>
+        /* Custom views styles */
+        
+        .subview-a {
+            background: #87e0fd;
+            background: -moz-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+            background: -webkit-linear-gradient(top, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+            background: linear-gradient(to bottom, #87e0fd 0%, #53cbf1 40%, #05abe0 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0', GradientType=0);
+        }
+        
+        .subview-b {
+            background: #fcfff4;
+            background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);
+        }
+        
+        .subview-c {
+            background: #febbbb;
+            background: -moz-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
+            background: -webkit-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
+            background: linear-gradient(to bottom, #febbbb 0%, #fe9090 45%, #ff5c5c 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c', GradientType=0);
+        }
+
+        /* Styles specific for this example */
+        
+        a {
+            text-decoration: none;
+            font-size: 13px;
+            color: #000;
+        }
+        
+        .menu {
+            position: fixed;
+            margin-top: 10px;
+            left: 10px;
+            width: 60%;
+            font-family: Arial;
+            font-size: 20px;
+            z-index: 10;
+        }
+        
+        .forkme {
+            position: fixed;
+            z-index: 30;
+            top: 0;
+            right: 0;
+            border: 0;
+        }
+        
+        .lorem {
+            padding: 20px 0 20px 0;
+            font-family: Arial;
+            font-size: 26px;
+        }
+		
+		input[type="button"] {
+            -webkit-appearance: none;
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px #000;
+        }
+
+        /* Extends predefined vs-center class */
+        
+        .vs-center {
+            font-family: Arial, Tahoma;
+            font-size: 50px;
+			color: rgba(0, 0, 0, .6)
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://github.com/Viewdesic/viewScroller.js"><img src="../images/forkme-github.png" alt="Fork me on GitHub" class="forkme"></a>
+
+    <div class="menu">
+        <a href="../index.html">Click here to go back to homepage and all examples</a><br>
+    </div>
+
+    <div class="mainbag">
+        <div vs-anchor="view-1" class="mainview view1">
+            <div class="subbag">
+                <div vs-anchor="subview-a" class="subview subview-a">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview A
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-b" class="subview subview-b">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview B
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-c" class="subview subview-c">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview C
+                            <div class="pos">
+                                <input type="button" value="&lt;" class="vs-subview-prev">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                                <input type="button" value="&gt;" class="vs-subview-next">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lorem">
+        <h1>Normal page</h1> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."<br><br><br>"Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."<br><br><br>"Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."<br><br><br>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."<br>
+    </div>
+
+    <script src="../jquery-3.1.0.min.js"></script>
+    <script src="../jquery.easing.min.js"></script>
+    <script src="../jquery.mousewheel.min.js"></script>
+    <script src="../viewScroller.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            // Sets viewScroller
+            $('.mainbag').viewScroller({
+                useScrollbar: true,
+                fitToView: false,
+                changeWhenAnim: false
+            });
+
+        });
+    </script>
+</body>
+
+</html>

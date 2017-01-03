@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Copyright (c) 2016 Marcin Gierczak (www.viewdesic.com)">
+    <meta name="description" content="viewScroller plugin by Marcin Gierczak. This plugin allows creating fullscreen scrollable webpage." />
+    <meta name="keywords" content="viewScroller, fullscreen, html fullpage, scroll page, page scrolling, page scroll, full scroll" />
+    <title>viewScroller - Custom height of view example</title>
+    <link rel="stylesheet" type="text/css" href="../viewScroller.css">
+    <style>
+        /* Custom views styles */
+        
+        .view1 {
+            background: #30d5c7;
+            background: -webkit-linear-gradient(#30d5c7, #55e8db);
+            background: -o-linear-gradient(#30d5c7, #55e8db);
+            background: -moz-linear-gradient(#30d5c7, #55e8db);
+            background: linear-gradient(#30d5c7, #55e8db);
+        }
+        
+        .view3 {
+            background: #30d5c7;
+            background: -webkit-linear-gradient(#30d5c7, #55e8db);
+            background: -o-linear-gradient(#30d5c7, #55e8db);
+            background: -moz-linear-gradient(#30d5c7, #55e8db);
+            background: linear-gradient(#30d5c7, #55e8db);
+        }
+        
+        .view5 {
+            background: #30d579;
+            background: -webkit-linear-gradient(#30d579, #55e895);
+            background: -o-linear-gradient(#30d579, #55e895);
+            background: -moz-linear-gradient(#30d579, #55e895);
+            background: linear-gradient(#30d579, #55e895);
+        }
+        
+        .subview-a {
+            background: #30d5d2;
+            background: -webkit-linear-gradient(#30d5d2, #54e8e6);
+            background: -o-linear-gradient(#30d5d2, #54e8e6);
+            background: -moz-linear-gradient(#30d5d2, #54e8e6);
+            background: linear-gradient(#30d5d2, #54e8e6);
+        }
+        
+        .subview-b {
+            background: #30c4d5;
+            background: -webkit-linear-gradient(#30c4d5, #55d8e8);
+            background: -o-linear-gradient(#30c4d5, #55d8e8);
+            background: -moz-linear-gradient(#30c4d5, #55d8e8);
+            background: linear-gradient(#30c4d5, #55d8e8);
+        }
+        
+        .subview-c {
+            background: #13AD58;
+            background: -webkit-linear-gradient(#13AD58, #47ba7b);
+            background: -o-linear-gradient(#13AD58, #47ba7b);
+            background: -moz-linear-gradient(#13AD58, #47ba7b);
+            background: linear-gradient(#13AD58, #47ba7b);
+        }
+        
+        .subview-d {
+            background: #26bece;
+            background: -webkit-linear-gradient(#26bece, #6ce0ee);
+            background: -o-linear-gradient(#26bece, #6ce0ee);
+            background: -moz-linear-gradient(#26bece, #6ce0ee);
+            background: linear-gradient(#26bece, #6ce0ee);
+        }
+        
+        .subview-e {
+            background: #23dc94;
+            background: -webkit-linear-gradient(#23dc94, #63eeb8);
+            background: -o-linear-gradient(#23dc94, #63eeb8);
+            background: -moz-linear-gradient(#23dc94, #63eeb8);
+            background: linear-gradient(#23dc94, #63eeb8);
+        }
+        /* Styles specific for this example */
+        
+        a {
+            text-decoration: none;
+            font-size: 13px;
+            color: #000;
+        }
+        
+        .menu {
+            position: fixed;
+            margin-top: 10px;
+            left: 10px;
+            width: 60%;
+            font-family: Arial;
+            font-size: 20px;
+            z-index: 10;
+        }
+        
+        .forkme {
+            position: fixed;
+            z-index: 30;
+            top: 0;
+            right: 0;
+            border: 0;
+        }
+        
+        .logo {
+            width: 80%;
+            min-width: 230px;
+            min-height: 230px;
+            max-width: 288px;
+            max-height: 288px;
+        }
+        
+        input[type="button"] {
+            -webkit-appearance: none;
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px #000;
+        }
+        /* Extends predefined vs-center class */
+        
+        .vs-center {
+            font-family: Arial, Tahoma;
+            font-size: 50px;
+            color: rgba(0, 0, 0, .6)
+        }
+        
+        .vs-top {
+            text-align: center;
+            font-family: Arial, Tahoma;
+            font-size: 50px;
+            margin-top: 50px;
+            color: rgba(0, 0, 0, .6)
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://github.com/Viewdesic/viewScroller.js"><img src="../images/forkme-github.png" alt="Fork me on GitHub" class="forkme"></a>
+
+    <div class="menu">
+        <a href="#view-1" class="vs-anchor"><button>View 1</button></a>
+        <a href="#view-2" class="vs-anchor"><button>View 2</button></a>
+        <a href="#view-3" class="vs-anchor"><button>View 3</button></a>
+        <a href="#view-4" class="vs-anchor"><button>View 4</button></a>
+        <a href="#view-5" class="vs-anchor"><button>View 5</button></a>
+        <button class="vs-mainview-prev">prev</button>
+        <button class="vs-mainview-next">next</button><br>
+        <a href="../index.html">Click here to go back to homepage and all examples</a><br>
+    </div>
+
+    <div class="mainbag">
+        <div vs-anchor="view-1" class="mainview view1">
+            <div class="vs-center-wrap">
+                <div class="vs-center">
+                    <img src="../images/viewscroller-logo.png" alt="viewScroller logo" class="logo">
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="view-2" class="mainview">
+            <div class="subbag">
+                <div vs-anchor="subview-a" class="subview subview-a">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview A
+                            <div class="pos">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-b" class="subview subview-b">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview B
+                            <div class="pos">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-c" class="subview subview-c">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview C
+                            <div class="pos">
+                                <a href="#subview-a" class="vs-anchor"><input type="button" value="A"></a>
+                                <a href="#subview-b" class="vs-anchor"><input type="button" value="B"></a>
+                                <a href="#subview-c" class="vs-anchor"><input type="button" value="C"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="view-3" class="mainview view3">
+            <div class="vs-center-wrap">
+                <div class="vs-center">
+                    <div class="info">View 3</div>
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="view-4" class="mainview">
+            <div class="subbag">
+                <div vs-anchor="subview-d" class="subview subview-d">
+                    <div class="vs-top">
+                        Subview D
+                        <div class="pos">
+                            <a href="#subview-d" class="vs-anchor"><input type="button" value="D"></a>
+                            <a href="#subview-e" class="vs-anchor"><input type="button" value="E"></a>
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="subview-e" class="subview subview-e">
+                    <div class="vs-top">
+                        Subview E
+                        <div class="pos">
+                            <a href="#subview-d" class="vs-anchor"><input type="button" value="D"></a>
+                            <a href="#subview-e" class="vs-anchor"><input type="button" value="E"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="view-5" class="mainview view5">
+            <div class="vs-center-wrap">
+                <div class="vs-center">
+                    <div class="info">View 5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../jquery-3.1.0.min.js"></script>
+    <script src="../jquery.easing.min.js"></script>
+    <script src="../jquery.mousewheel.min.js"></script>
+    <script src="../viewScroller.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            // Sets viewScroller
+            $('.mainbag').viewScroller({
+                useScrollbar: false,
+                changeWhenAnim: false,
+                viewsHeight: [400, 0, 300, 5500, 0]
+            });
+
+        });
+    </script>
+</body>
+
+</html>

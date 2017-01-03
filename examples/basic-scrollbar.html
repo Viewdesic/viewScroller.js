@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Copyright (c) 2016 Marcin Gierczak (www.viewdesic.com)">
+    <meta name="description" content="viewScroller plugin by Marcin Gierczak. This plugin allows creating fullscreen scrollable webpage." />
+    <meta name="keywords" content="viewScroller, fullscreen, html fullpage, scroll page, page scrolling, page scroll, full scroll" />
+    <title>viewScroller - Basic with scrollbar example</title>
+    <link rel="stylesheet" type="text/css" href="../viewScroller.css">
+    <style>
+        /* Custom views styles */
+        
+        .view1 {
+            background-color: #FF8F3F;
+        }
+        
+        .view3 {
+            background-color: #FF5347;
+        }
+        
+        .subview-a {
+            background-color: #FF756A;
+        }
+        
+        .subview-b {
+            background-color: #E82170;
+        }
+        
+        .subview-c {
+            background-color: #FE24FF;
+        }
+        
+        /* Styles specific for this example */
+        
+        a {
+            text-decoration: none;
+            font-size: 13px;
+            color: #000;
+        }
+        
+        .menu {
+            position: fixed;
+            margin-top: 10px;
+            left: 10px;
+            width: 60%;
+            font-family: Arial;
+            font-size: 20px;
+            z-index: 10;
+        }
+
+        .forkme {
+            position: fixed;
+            z-index: 30;
+            top: 0;
+            right: 0;
+            border: 0;
+        }
+		
+		input[type="button"] {
+            -webkit-appearance: none;
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px #000;
+        }
+
+        /* Extends predefined vs-center class */
+        
+        .vs-center {
+            font-family: Arial, Tahoma;
+            font-size: 50px;
+			color: rgba(0, 0, 0, .6)
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://github.com/Viewdesic/viewScroller.js"><img src="../images/forkme-github.png" alt="Fork me on GitHub" class="forkme"></a>
+
+    <div class="menu">
+        <a href="#firstview" class="vs-anchor"><button>View 1</button></a>
+        <a href="#secondview" class="vs-anchor"><button>View 2</button></a>
+        <a href="#thirdview" class="vs-anchor"><button>View 3</button></a>
+        <button class="vs-mainview-prev">prev</button>
+        <button class="vs-mainview-next">next</button><br>
+        <a href="../index.html">Click here to go back to homepage and all examples</a><br>
+    </div>
+
+    <div class="mainbag">
+        <div vs-anchor="firstview" class="mainview view1">
+            <div class="vs-center-wrap">
+                <div class="vs-center">
+                    View 1
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="secondview" class="mainview">
+            <div class="subbag">
+                <div vs-anchor="firstsubview" class="subview subview-a">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview A<br>
+                            <input type="button" value="&lt;" class="vs-subview-prev">
+                            <a href="#firstsubview" class="vs-anchor"><input type="button" value="A"></a>
+                            <a href="#secondsubview" class="vs-anchor"><input type="button" value="B"></a>
+                            <a href="#thirdsubview" class="vs-anchor"><input type="button" value="C"></a>
+                            <input type="button" value="&gt;" class="vs-subview-next">
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="secondsubview" class="subview subview-b">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview B<br>
+                            <input type="button" value="&lt;" class="vs-subview-prev">
+                            <a href="#firstsubview" class="vs-anchor"><input type="button" value="A"></a>
+                            <a href="#secondsubview" class="vs-anchor"><input type="button" value="B"></a>
+                            <a href="#thirdsubview" class="vs-anchor"><input type="button" value="C"></a>
+                            <input type="button" value="&gt;" class="vs-subview-next">
+                        </div>
+                    </div>
+                </div>
+                <div vs-anchor="thirdsubview" class="subview subview-c">
+                    <div class="vs-center-wrap">
+                        <div class="vs-center">
+                            Subview C<br>
+                            <input type="button" value="&lt;" class="vs-subview-prev">
+                            <a href="#firstsubview" class="vs-anchor"><input type="button" value="A"></a>
+                            <a href="#secondsubview" class="vs-anchor"><input type="button" value="B"></a>
+                            <a href="#thirdsubview" class="vs-anchor"><input type="button" value="C"></a>
+                            <input type="button" value="&gt;" class="vs-subview-next">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div vs-anchor="thirdview" class="mainview view3">
+            <div class="vs-center-wrap">
+                <div class="vs-center">
+                    View 3
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../jquery-3.1.0.min.js"></script>
+    <script src="../jquery.easing.min.js"></script>
+    <script src="../jquery.mousewheel.min.js"></script>
+    <script src="../viewScroller.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            // Sets viewScroller
+            $('.mainbag').viewScroller({
+                useScrollbar: true,
+                changeWhenAnim: false
+            });
+
+        });
+    </script>
+</body>
+
+</html>
