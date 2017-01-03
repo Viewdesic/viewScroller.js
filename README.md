@@ -516,7 +516,8 @@ $('.mainbag').viewScroller({
 
 Note:
 If you use viewsHeight property remember to declare height value for all the mainviews. Don't skip any of views.
-If you want to set 100vh for some of the view, just put 0 value.
+
+**If you want to set 100vh for some of the view, just put 0 value.**
 
 ## Reporting issues
 
