@@ -506,8 +506,8 @@ $('.mainbag').viewScroller({
     viewsHeight: [200, 0, 300, 1600, ...]
 	/* Sets height:
 	* 200px for firstview
-	* 0 - means 100% vh for secondview
-    * 300px for thirdview
+	* 0 - means 100vh for secondview
+        * 300px for thirdview
 	* 1600px for fourthview
 	...
 	*/
