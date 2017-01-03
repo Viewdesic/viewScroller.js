@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.0.8
+ * Version: 2.1.0
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -38,7 +38,10 @@
                 beforeChange: null, // Callback which is called before views change
                 afterChange: null, // Callback which is called after views change
                 beforeResize: null, // Callback which is called before browser window resize
-                afterResize: null // Callback which is called after browser window resize
+                afterResize: null, // Callback which is called after browser window resize
+
+                // Views size
+                viewsHeight: [] // Array of mainviews height
             }, params);
         }
 
@@ -158,7 +161,7 @@
             SUBBAG: 1 // Bag type for subviews
         };
 
-        // Shows view direction DO NOT CHANGE!!!
+        // DO NOT CHANGE!!! Shows view direction 
         var direction = {
             NEXT: 1,
             PREV: -1
@@ -203,7 +206,7 @@
             };
         }
 
-        // Creates Cache object
+        // Creates cache object
         var sel = new SelectorCache();
 
         // ----------------------------------------
@@ -246,7 +249,7 @@
             }
         };
 
-        // Checks if resize event is fired by change mobile orientation
+        // Checks if resize event is fired during mobile orientation change
         var isMobile = function() {
             if (typeof window.orientation !== 'undefined') { // Smartphones usually support this property but not desktop browsers
                 return true;
@@ -256,97 +259,91 @@
 
         // Checks if orientation has been changed
         var isMobileOrientation = function() {
-            if (Math.abs(windowHeight - $window.height()) > 100) {
-                windowHeight = $window.height();
+            var currWindowHeight = $window.height(),
+                currWindowWidth = $window.width();
+            if (Math.abs(windowHeight - currWindowHeight) > 100) {
+                windowHeight = currWindowHeight;
                 return true;
             }
-            if (Math.abs(windowWidth - $window.width()) > 100) {
-                windowWidth = $window.width();
+            if (Math.abs(windowWidth - currWindowWidth) > 100) {
+                windowWidth = currWindowWidth;
                 return true;
             }
             return false;
         };
 
         // Gets view name
-        var getViewName = function(idx, view) {
+        var getViewName = function(mainViewNbr, view) {
             var viewId = '#' + view.attr('vs-anchor');
             if (viewId === '#undefined') {
                 viewId = '';
             }
-            return idx + viewId;
+            return mainViewNbr + viewId;
         };
 
-        // Gets all mainviews from mainbag
+        // Gets all mainviews from the mainbag
         var getAllMainViews = function() {
             var mainViews = [];
-            sel.get(getallmainviews_sel).each(function(idx) {
-                mainViews.push(getViewName(idx, $(this)));
+            sel.get(getallmainviews_sel).each(function(mainViewNbr) {
+                mainViews.push(getViewName(mainViewNbr, $(this)));
             });
             return mainViews;
         };
 
         // Gets all subviews from specified mainview
-        var getAllSubViews = function(mainViewIndex) {
+        var getAllSubViews = function(mainViewNbr) {
             var subViews = [];
-            // Gets specified (based on mainViewIndex) mainview from mainbag
-            var getSpecifiedMainView = sel.get(getallmainviews_sel).slice(mainViewIndex, mainViewIndex + 1);
+            // Gets specified (based on mainViewNbr) mainview from mainbag
+            var getSpecifiedMainView = sel.get(getallmainviews_sel).slice(mainViewNbr, mainViewNbr + 1);
             // Gets all subviews from specified mainview
-            getSpecifiedMainView.find(sel.get(getallsubviews_sel)).each(function(idx) {
-                subViews.push(getViewName(idx, $(this)));
+            getSpecifiedMainView.find(sel.get(getallsubviews_sel)).each(function(subViewNbr) {
+                subViews.push(getViewName(subViewNbr, $(this)));
             });
-            var subViewIndex = 0;
-            while (subViewIndex < subViews.length) {
-                subViewIndex++;
+            var subViewNbr = 0,
+                len = subViews.length;
+            while (subViewNbr < len) {
+                subViewNbr++;
             }
             return subViews;
         };
 
-        // Gets bag index which includes the view
-        var getBagIndex = function(viewName) {
-            var len = allBagObjs.length;
-            for (var bagIndex = 0; bagIndex < len; bagIndex++) {
-                var len2 = allBagObjs[bagIndex].viewsData.views.length;
-                for (var j = 0; j < len2; j++) {
-                    if (allBagObjs[bagIndex].viewsData.views[j].split('#')[1] === viewName) {
-                        return bagIndex;
+        // Gets bag number which includes the view
+        var getBagNbr = function(viewName) {
+            for (var bagObjNbr = 0, len = allBagObjs.length; bagObjNbr < len; bagObjNbr++) {
+                for (var viewNbr = 0, len2 = allBagObjs[bagObjNbr].viewsData.views.length; viewNbr < len2; viewNbr++) {
+                    if (allBagObjs[bagObjNbr].viewsData.views[viewNbr].split('#')[1] === viewName) {
+                        return bagObjNbr;
                     }
                 }
             }
             return -1;
         };
 
-        // Gets current bag index for the current url #id (view name)
-        var getCurrentBagIndex = function(urlViewName) {
-            var subviews = [];
-            var anchor_sel = 'div[vs-anchor=' + urlViewName + '], section[vs-anchor=' + urlViewName + '], article[vs-anchor=' + urlViewName + ']';
-            sel.get(anchor_sel).find(sel.get(getallsubviews_sel)).each(function(idx) {
-                subviews.push($(this).attr('vs-anchor'));
-            });
-            if (subviews.length > 0) {
-                return getBagIndex(subviews[0]);
-            } else if (subviews.length === 0) {
-                sel.get(anchor_sel).parents(sel.get(subbag_sel)).each(function(idx) {
-                    subviews.push($(this).attr('class'));
+        // Gets current bag number for the viewname from url
+        var getCurrBagNbr = function() {
+            if (window.location.hash.indexOf('#') > -1) {
+                urlViewName = window.location.hash.replace('#', '');
+                var subviews = [],
+                    anchor_sel = 'div[vs-anchor=' + urlViewName + '], section[vs-anchor=' + urlViewName + '], article[vs-anchor=' + urlViewName + ']';
+                sel.get(anchor_sel).find(sel.get(getallsubviews_sel)).each(function(idx) {
+                    subviews.push($(this).attr('vs-anchor'));
                 });
                 if (subviews.length > 0) {
-                    if (subviews[0].includes(subbag_sel.replace('.', ''))) {
-                        return getBagIndex(urlViewName);
+                    return getBagNbr(subviews[0]);
+                } else if (subviews.length === 0) {
+                    sel.get(anchor_sel).parents(sel.get(subbag_sel)).each(function(idx) {
+                        subviews.push($(this).attr('class'));
+                    });
+                    if (subviews.length > 0) {
+                        if (subviews[0].includes(subbag_sel.replace('.', ''))) {
+                            return getBagNbr(urlViewName);
+                        }
                     }
                 }
+                return -1;
+            } else {
+                return 0;
             }
-            return -1;
-        };
-
-        // Gets the current view id from URL
-        var getCurrentViewIdx = function() {
-            var id = '',
-                currentBagIndex = 0;
-            // Get current view id from URL
-            if (window.location.hash.indexOf('#') > -1) {
-                id = window.location.hash.replace('#', '');
-                currentBagIndex = getCurrentBagIndex(id);
-            }
-            return currentBagIndex;
         };
 
         // Sets hash in the URL
@@ -370,17 +367,17 @@
         var createBagObjsForAllSubViews = function(mainViews) {
             var subViews = [],
                 mainViewName = '',
-                mainViewIndex = 0,
-                subViewIndex = 0,
+                mainViewNbr = 0,
+                subViewNbr = 0,
                 len = mainViews.length;
-            while (mainViewIndex < len) {
-                subViews = getAllSubViews(mainViewIndex);
-                mainViewName = mainViews[mainViewIndex].split('#')[1];
+            while (mainViewNbr < len) {
+                subViews = getAllSubViews(mainViewNbr);
+                mainViewName = mainViews[mainViewNbr].split('#')[1];
                 if (subViews.length > 0) {
-                    allBagObjs.push(createBagObj(subbag_sel + '|' + subViewIndex + '|' + mainViewName + '|' + mainViewIndex, subViews, bagType.SUBBAG));
-                    subViewIndex++;
+                    allBagObjs.push(createBagObj(subbag_sel + '|' + subViewNbr + '|' + mainViewName + '|' + mainViewNbr, subViews, bagType.SUBBAG));
+                    subViewNbr++;
                 }
-                mainViewIndex++;
+                mainViewNbr++;
             }
         };
 
@@ -405,16 +402,14 @@
 
         // Looks for anchor id among all views in all bag objects and return the view data which has the same id
         var getViewDataForID = function(id) {
-            var viewData = [],
-                len = allBagObjs.length;
-            for (var subObjNbr = 0; subObjNbr < len; subObjNbr++) {
+            var viewData = [];
+            for (var subObjNbr = 0, len = allBagObjs.length; subObjNbr < len; subObjNbr++) {
                 var views = allBagObjs[subObjNbr].viewsData.views,
-                    bagType = allBagObjs[subObjNbr].viewsData.bagType,
-                    len2 = views.length;
-                for (var j = 0; j < len2; j++) {
-                    if (views[j].indexOf('#') > -1) {
-                        if (views[j].split('#')[1] === id) {
-                            viewData.push(subObjNbr, views[j], bagType);
+                    bagType = allBagObjs[subObjNbr].viewsData.bagType;
+                for (var viewNbr = 0, len2 = views.length; viewNbr < len2; viewNbr++) {
+                    if (views[viewNbr].indexOf('#') > -1) {
+                        if (views[viewNbr].split('#')[1] === id) {
+                            viewData.push(subObjNbr, views[viewNbr], bagType);
                             return viewData;
                         }
                     }
@@ -422,14 +417,14 @@
             }
         };
 
-        // Gets view index
-        var getViewIndex = function(bagObj, direction) {
-            var idx = bagObj.viewsData.views.indexOf(bagObj.viewsData.activeView) + direction;
-            if ((params.loopSubViews && typeof bagObj.viewsData.views[idx] === 'undefined' && bagObj.viewsData.container.includes(subbag_sel)) ||
-                (params.loopMainViews && typeof bagObj.viewsData.views[idx] === 'undefined' && bagObj.viewsData.container.includes(mainbag_sel))) {
-                idx = idx < 0 ? bagObj.viewsData.views.length - 1 : 0;
+        // Gets view number
+        var getViewNbr = function(bagObj, direction) {
+            var nbr = bagObj.viewsData.views.indexOf(bagObj.viewsData.activeView) + direction;
+            if ((params.loopSubViews && typeof bagObj.viewsData.views[nbr] === 'undefined' && bagObj.viewsData.container.includes(subbag_sel)) ||
+                (params.loopMainViews && typeof bagObj.viewsData.views[nbr] === 'undefined' && bagObj.viewsData.container.includes(mainbag_sel))) {
+                nbr = nbr < 0 ? bagObj.viewsData.views.length - 1 : 0;
             }
-            return idx;
+            return nbr;
         };
 
         // Adds styles to the bag selectors when useScrollbar option is enabled
@@ -456,67 +451,110 @@
         var calcViewsPos = function(bagObj) {
             var viewsPos = [];
             bagObj.viewsData.viewsPos.length = 0;
-            var len = bagObj.viewsData.views.length;
-            for (var i = 0; i < len; i++) {
+            var isValidVHA = isValidViewsHeightArray();
+            for (var viewNbr = 0, len = bagObj.viewsData.views.length; viewNbr < len; viewNbr++) {
                 if (bagObj.viewsData.bagType === bagType.SUBBAG) {
-                    var width = sel.get(mainbag_sel).width();
-                    if (params.fixedWidth === 0) {
-                        width = $window.width() - params.spaceMainBag;
-                    } else {
-                        width = params.fixedWidth;
-                    }
-                    bagObj.viewsData.viewsPos.push(width * i);
+                    setSubViewsPos(bagObj, viewNbr);
                 } else {
-                    bagObj.viewsData.viewsPos.push($window.height() * i);
+                    setMainViewsPos(bagObj, viewNbr, isValidVHA);
                 }
             }
         };
 
-        // Calculates the nearest view to the current scroll position
-        var calcViewPos = function(arr) {
+        // Sets subviews position
+        var setSubViewsPos = function(bagObj, viewNbr) {
+            var width = sel.get(mainbag_sel).width();
+            windowWidth = $window.width();
+            if (params.fixedWidth === 0) {
+                width = windowWidth - params.spaceMainBag;
+            } else {
+                width = params.fixedWidth;
+            }
+            bagObj.viewsData.viewsPos.push(width * viewNbr);
+        };
+
+        // Sets mainviews position
+        var setMainViewsPos = function(bagObj, viewNbr, isValidVHA) {
+            windowHeight = $window.height();
+            if (viewNbr === 0) {
+                bagObj.viewsData.viewsPos.push(0);
+            } else if (viewNbr > 0 && isValidVHA && params.viewsHeight.length >= viewNbr && params.viewsHeight[viewNbr - 1] !== 0) {
+                bagObj.viewsData.viewsPos.push(bagObj.viewsData.viewsPos[viewNbr - 1] + params.viewsHeight[viewNbr - 1]); // Sets view size defined by a user
+            } else if (viewNbr > 0) {
+                bagObj.viewsData.viewsPos.push(bagObj.viewsData.viewsPos[viewNbr - 1] + windowHeight); // Sets default view size (100% vh/vw)
+            }
+        };
+
+        // Calculates which view is closer to the current scroll position
+        var calcViewPos = function(viewsPosArr) {
             var currPos = $window.scrollTop(),
                 prevDiffPos = 0,
                 diffPos = 0,
-                getArrNbr = 0,
-                len = arr.length;
-            for (var i = 0; i < len; i++) {
-                diffPos = Math.abs(arr[i] - currPos);
+                getArrNbr = 0;
+            for (var viewPosNbr = 0, len = viewsPosArr.length; viewPosNbr < len; viewPosNbr++) {
+                diffPos = Math.abs(viewsPosArr[viewPosNbr] - currPos);
                 if (diffPos < prevDiffPos) {
-                    getArrNbr = i;
+                    getArrNbr = viewPosNbr;
                 }
                 prevDiffPos = diffPos;
             }
-            return getArrNbr; // Return index of views array includes the closest value to the current scroll position
+            return getArrNbr; // Returns view number which includes the closest value to the current scroll position
         };
 
-        // Sets height and width css properties of the mainviews and subviews
+        // Sets width and height css properties for mainviews and subviews
         var calcViewsDimensions = function() {
-            var width = sel.get(mainbag_sel).width();
+            var width = sel.get(mainbag_sel).width(),
+                height = $window.height();
             if (params.fixedWidth === 0) {
                 width = $window.width() - params.spaceMainBag;
             } else {
                 width = params.fixedWidth;
             }
             sel.get(mainbag_sel).css('width', width + 'px');
-            var height = $window.height();
             sel.get(mainview_sel).css('height', height + 'px');
+            if (isValidViewsHeightArray()) {
+                setViewHeight(height);
+            }
             sel.get(subview_sel).css('width', width + 'px');
             sel.get(subbag_sel).each(function(idx) {
-                $(this).css('width', width * $(this).find(subview_sel).length + 'px'); // How many subviews are in the subbag
+                $(this).css('width', width * $(this).find(subview_sel).length + 'px'); // How many subviews are placed inside the subbag
             });
             if (css3Active) {
                 sel.get(mainbag_sel).css('height', 'auto');
             }
         };
 
-        // Adds own classes with subbag number
-        var addClassesForSubBags = function() {
-            sel.get(subbag_sel).each(function(idx) {
-                $(this).addClass(subbag_sel.replace('.', '') + '-' + idx);
+        // Sets mainviews height
+        var setViewHeight = function(height) {
+            Array.prototype.forEach.call(params.viewsHeight, function(viewHeight, viewNbr) {
+                var currViewHeight = parseInt(viewHeight, 10);
+                if (currViewHeight === 0) {
+                    currViewHeight = height;
+                }
+                viewNbr = viewNbr + 1;
+                sel.get(mainview_sel + ':nth-child(' + viewNbr + ')').css('height', currViewHeight + 'px');
             });
         };
 
-        // Adds wrappers for subbags (generates tag: <div style="..."'>here is a subbag</div>
+        // Checks if viewsHeight array is valid
+        var isValidViewsHeightArray = function() {
+            var isValid = true;
+            Array.prototype.forEach.call(params.viewsHeight, function(viewHeight) {
+                if (isNaN(viewHeight) || parseInt(viewHeight, 10) < 0) {
+                    isValid = false;
+                }
+            });
+            return isValid;
+        };
+
+        // Adds own classes with subbag number
+        var addClassesForSubBags = function() {
+            sel.get(subbag_sel).each(function(subBagNbr) {
+                $(this).addClass(subbag_sel.replace('.', '') + '-' + subBagNbr);
+            });
+        };
+
+        // Adds wrappers for subbags (generates tag: <div style="..."'>subbag</div>
         var addWrappersForSubBags = function() {
             sel.get(subbag_sel).wrap('<div style="overflow: hidden; height: 100%; width: 100%;"></div>');
         };
@@ -530,10 +568,10 @@
             }
         };
 
-        // Sets mainbag's position on absolute when it's' width is fixed
+        // Sets mainbag's position on absolute when its width is fixed
         var setMainbagDimWhenFixed = function() {
             if (params.fixedWidth > 0) {
-                $(sel.get(mainbag_sel)).css({
+                sel.get(mainbag_sel).css({
                     'position': 'absolute'
                 });
             }
@@ -541,26 +579,26 @@
 
         // Sets active view (for vs-active class)
         var setActiveView = function() {
-            $(sel.get(mainbag_sel)).find(sel.get(active_sel)).each(function(idx) {
-                if (idx === 0) {
+            sel.get(mainbag_sel).find(sel.get(active_sel)).each(function(viewNbr) {
+                if (viewNbr === 0) {
                     setHash($(this).attr('vs-anchor'));
                 }
             });
         };
 
         // Shows next or prev subview
-        var showSubView = function(currBagIndex, dir) {
-            if (currBagIndex > -1) {
-                // Prevent of scrolling views when they are still animate
+        var showSubView = function(currBagNbr, dir) {
+            if (currBagNbr > -1) {
+                // Prevent views from scrolling when they are still animate
                 if (params.changeWhenAnim || (!params.changeWhenAnim && !isChanging)) {
-                    changeView(allBagObjs[currBagIndex], '', false, false, dir);
+                    changeView(allBagObjs[currBagNbr], '', false, false, dir);
                 }
             }
         };
 
         // Shows next or prev mainview
         var showMainView = function(dir) {
-            // Prevent of scrolling views when they are still animate
+            // Prevent views from scrolling when they are still animate
             if (params.changeWhenAnim || (!params.changeWhenAnim && !isChanging)) {
                 changeView(allBagObjs[0], '', false, false, dir);
             }
@@ -627,7 +665,7 @@
         // Shows specified view - this function manage of views change
         var changeView = function(bagObj, viewName, isResize, isScroll, direction) {
             if (typeof direction !== 'undefined') { // Show next or previous view
-                viewName = bagObj.viewsData.views[getViewIndex(bagObj, direction)];
+                viewName = bagObj.viewsData.views[getViewNbr(bagObj, direction)];
             }
 
             if (bagObj.viewsData.views.length > 0 && typeof viewName !== 'undefined') {
@@ -689,11 +727,7 @@
 
                     if (params.useScrollbar || isScroll) {
                         if (css3Active) {
-                            if (navigator.userAgent.includes('Firefox') || navigator.userAgent.includes('.NET') || navigator.userAgent.includes('MSIE') || navigator.userAgent.includes('Windows Phone')) {
-                                elem = sel.get('html'); // for ie/firefox
-                            } else {
-                                elem = sel.get('body'); // for edge/chrome/opera/safari
-                            }
+                            elem = setMainElem();
                         }
                     }
 
@@ -724,34 +758,51 @@
             }
         };
 
+        // Sets main element to scrolling
+        var setMainElem = function() {
+            if (navigator.userAgent.includes('Firefox') || navigator.userAgent.includes('.NET') || navigator.userAgent.includes('MSIE') || navigator.userAgent.includes('Windows Phone')) {
+                return sel.get('html'); // for ie/firefox
+            } else {
+                return sel.get('body'); // for edge/chrome/opera/safari
+            }
+        };
+
         // Calls when jQuery or CSS3 animation is over
         var animationDone = function(isScroll, bagObj, viewName) {
             callFuncAfterChange();
             if (!params.useScrollbar && !isScroll) {} else {
                 stopHashEvent = false;
                 unbindResize();
-                if ($window.height() !== windowHeight) {
-                    onResize(false, false, false);
-                    windowHeight = $window.height();
-                }
-                // This code changes view's height if  mobile browser is hiding/showing toolbar
-                if (allBagObjs[0].viewsData.viewsPos.length > 1) {
-                    if (correctHeight && isMobile() && $window.height() !== Math.abs(allBagObjs[0].viewsData.viewsPos[0] - allBagObjs[0].viewsData.viewsPos[1])) {
-                        calcViewsDimensions();
-                        var len = allBagObjs.length;
-                        for (var i = 0; i < len; i++) {
-                            calcViewsPos(allBagObjs[i]);
-                            changeView(allBagObjs[i], allBagObjs[i].viewsData.activeView, true);
-                        }
-                    }
-                }
+                recalcWindowHeight();
+                changeViewHeightOnMobileToolbar();
                 bindResize();
                 bindScroll();
             }
             isChanging = false; // Prevent of scrolling views when they are changing
             isStart = false; // Clear hidden scrolling effect
         };
-        
+
+        // Recalculates window height property
+        var recalcWindowHeight = function() {
+            if ($window.height() !== windowHeight) {
+                onResize(false, false, false);
+                windowHeight = $window.height();
+            }
+        };
+
+        // This code changes view's height if mobile browser is hiding/showing toolbar
+        var changeViewHeightOnMobileToolbar = function() {
+            if (allBagObjs[0].viewsData.viewsPos.length > 1) {
+                if (correctHeight && isMobile() && $window.height() !== Math.abs(allBagObjs[0].viewsData.viewsPos[0] - allBagObjs[0].viewsData.viewsPos[1])) {
+                    calcViewsDimensions();
+                    for (var bagObjNbr = 0, len = allBagObjs.length; bagObjNbr < len; bagObjNbr++) {
+                        calcViewsPos(allBagObjs[bagObjNbr]);
+                        changeView(allBagObjs[bagObjNbr], allBagObjs[bagObjNbr].viewsData.activeView, true);
+                    }
+                }
+            }
+        };
+
         // Calls function before change view
         var callFuncBeforeChange = function() {
             var stop = false;
@@ -770,7 +821,7 @@
                 if (typeof params.afterChange === 'function') {
                     params.afterChange();
                 }
-                times -= 1; // this variable counts how many beforeChange callback has been invoked
+                times -= 1; // This variable counts how many beforeChange callback has been invoked
             }
         };
 
@@ -807,7 +858,7 @@
             $window.off('hashchange', changeViewOnHashChange);
         };
 
-        // Adds scroll event to outerbag selector
+        // Adds scroll event
         var bindScroll = function() {
             $window.on('scroll', onScroll);
         };
@@ -819,7 +870,7 @@
 
         // Scrolls the window
         var onScroll = function(e) {
-            // Sets hash name and current view
+            // Sets hash name and the current view
             var idx = calcViewPos(allBagObjs[0].viewsData.viewsPos); // Calculates which view is closer to the current scroll position
             clearTimeout(timeoutId);
             unbindHashChange();
@@ -827,7 +878,7 @@
                 setHash(allBagObjs[0].viewsData.views[idx].split('#')[1], false); // Sets the hash to the closests view
                 allBagObjs[0].viewsData.activeView = allBagObjs[0].viewsData.views[idx]; // Sets current view on mainbag
             }
-            // Prevents run bind after hash change (there is very small timespan between hash change and hash bind)
+            // Delays hash bind after hash change (there is very small timespan between hash change and hash bind)
             timeoutId = setTimeout(function() {
                 bindHashChange();
             }, 10);
@@ -835,12 +886,11 @@
             Array.prototype.forEach.call(timeouts, function(elem) {
                 clearTimeout(elem);
             });
-            timeouts.length = 0;
-            var len = allBagObjs[0].viewsData.viewsPos.length - 1;
             var currPos = $window.scrollTop();
+            timeouts.length = 0;
             timeouts.push(setTimeout(function() {
                 if (params.fitToView) {
-                    // Let's scroll only when scrollTop position is other than current mainview
+                    // Let's scroll only when scrollTop position is other than current mainview's position
                     var go = true;
                     Array.prototype.forEach.call(allBagObjs[0].viewsData.viewsPos, function(elem) {
                         if (elem === currPos) {
@@ -855,7 +905,7 @@
             }, params.timeToFit));
         };
 
-        // Adds mousewheel event to mainbag selector
+        // Adds mousewheel event
         var bindWheel = function() {
             $window.on('mousewheel', onMouseWheel);
         };
@@ -868,10 +918,10 @@
         // Changes view depending on the mouse wheel direction
         var onMouseWheel = function(e) {
             var wheelTime = Date.now();
-            // Calculates time for prevents scrolling many views at the same time (especially on MAC OS)
+            // Calculates time to prevent views from scrolling at the same time (especially on MAC OS)
             var timeDiff = wheelTime - startTime;
             startTime = wheelTime;
-            // Prevents scroll when ctrl key is pressed and when the time diff is less than 50 ms
+            // Prevents views from scrolling when ctrl key is pressed and when the time diff is less than 50 ms
             if (!e.ctrlKey && timeDiff > 50) {
                 if (e.deltaY < 0) {
                     showMainView(direction.NEXT);
@@ -881,21 +931,21 @@
             }
         };
 
-        // Adds click on elements with next or prev class
+        // Adds click event on elements with next or prev class
         var bindPrevNextClickEvent = function() {
             sel.get(subviewprev_sel).each(function(idx) {
                 $(this).on('click', function() {
-                    currentBagIndex = getCurrentViewIdx();
-                    if (currentBagIndex > -1) {
-                        showSubView(currentBagIndex, direction.PREV);
+                    currBagNbr = getCurrBagNbr();
+                    if (currBagNbr > -1) {
+                        showSubView(currBagNbr, direction.PREV);
                     }
                 });
             });
             sel.get(subviewnext_sel).each(function(idx) {
                 $(this).on('click', function() {
-                    currentBagIndex = getCurrentViewIdx();
-                    if (currentBagIndex > -1) {
-                        showSubView(currentBagIndex, direction.NEXT);
+                    currBagNbr = getCurrBagNbr();
+                    if (currBagNbr > -1) {
+                        showSubView(currBagNbr, direction.NEXT);
                     }
                 });
             });
@@ -911,7 +961,7 @@
             });
         };
 
-        // Adds touch events
+        // Adds touch event
         var bindTouch = function() {
             var elem = window; // don't use jQuery because of argument of the touchAttachEvents function
             touchAttachEvents(elem);
@@ -934,12 +984,11 @@
                 if (typeof params.beforeResize === 'function' && typeof isCallback === 'undefined') {
                     params.beforeResize();
                 }
-                // Recalcutales dimensions of each view
+                // Recalculates dimension of each view
                 calcViewsDimensions();
-                var len = allBagObjs.length;
-                for (var i = 0; i < len; i++) {
-                    calcViewsPos(allBagObjs[i]);
-                    changeView(allBagObjs[i], allBagObjs[i].viewsData.activeView, true);
+                for (var bagObjNbr = 0, len = allBagObjs.length; bagObjNbr < len; bagObjNbr++) {
+                    calcViewsPos(allBagObjs[bagObjNbr]);
+                    changeView(allBagObjs[bagObjNbr], allBagObjs[bagObjNbr].viewsData.activeView, true);
                 }
                 // Releases afterEvent
                 if (typeof params.afterResize === 'function' && typeof isCallback === 'undefined') {
@@ -968,21 +1017,20 @@
                 END_KEY_CODE = 35,
                 PAGEUP_KEY_CODE = 33,
                 PAGEDOWN_KEY_CODE = 34,
-                currentBagIndex = 0;
+                currBagNbr = 0;
 
             var getKey = function(e) {
                 if (window.event) {
-                    return e.keyCode;
-                } // IE
-                else if (e.which) {
-                    return e.which;
-                } // Firefox/Opera
+                    return e.keyCode; // IE
+                } else if (e.which) {
+                    return e.which; // Firefox/Opera
+                }
             };
 
             var keynum = getKey(e);
 
             // Gets the current view id from the URL
-            currentBagIndex = getCurrentViewIdx();
+            currBagNbr = getCurrBagNbr();
 
             if (params.useKeyboard) {
                 switch (keynum) {
@@ -999,15 +1047,15 @@
                         }
                         break;
                     case RIGHT_KEY_CODE:
-                        if (currentBagIndex === 0) currentBagIndex = 1;
-                        if (currentBagIndex > -1) {
-                            showSubView(currentBagIndex, direction.NEXT);
+                        if (currBagNbr === 0) currBagNbr = 1;
+                        if (currBagNbr > -1) {
+                            showSubView(currBagNbr, direction.NEXT);
                         }
                         break;
                     case LEFT_KEY_CODE:
-                        if (currentBagIndex === 0) currentBagIndex = 1;
-                        if (currentBagIndex > -1) {
-                            showSubView(currentBagIndex, direction.PREV);
+                        if (currBagNbr === 0) currBagNbr = 1;
+                        if (currBagNbr > -1) {
+                            showSubView(currBagNbr, direction.PREV);
                         }
                         break;
                     case HOME_KEY_CODE:
@@ -1028,9 +1076,9 @@
         // START REGION TOUCHES
         // ----------------------------------------
 
-        var touchable = 'createTouch' in document; // Checks if your browser support touches
-        var touches = []; // Includes all touches vectors
-        var posXGlobal = 0, // Contains pointer position on the x axis
+        var touchable = 'createTouch' in document, // Checks if your browser support touches
+            touches = [], // Includes all touches vectors
+            posXGlobal = 0, // Contains pointer position on the x axis
             posYGlobal = 0; // Contains pointer position on the y axis
 
         // Cursor positions
@@ -1053,13 +1101,16 @@
 
         // Sets current touch position
         var touchesChange = function(e) {
-            touches = e.touches;
+            setPointerPosition(e);
+            return cursorPos.x + "|" + cursorPos.y;
+        };
 
+        // Sets pointer position
+        var setPointerPosition = function(e) {
             if (touchable) {
                 touches = e.touches;
-                var len = touches.length;
-                for (var i = 0; i < len; i++) {
-                    var touch = touches[i];
+                for (var touchNbr = 0, len = touches.length; touchNbr < len; touchNbr++) {
+                    var touch = touches[touchNbr];
                     cursorPos.x = getCursorPosX(touch);
                     cursorPos.y = getCursorPosY(touch);
                 }
@@ -1067,8 +1118,6 @@
                 cursorPos.x = getCursorPosX(e);
                 cursorPos.y = getCursorPosY(e);
             }
-
-            return cursorPos.x + "|" + cursorPos.y;
         };
 
         // Gets coordinates of all touches
@@ -1081,7 +1130,7 @@
         // Changes views depending on touch direction
         var onTouchEnd = function(e) {
             var pos = touchesChange(e).split('|'),
-                currentBagIndex = 0,
+                currBagNbr = 0,
                 stepX = stepViaX,
                 stepY = stepViaY,
                 afterPos0 = parseInt(pos[0], 10),
@@ -1107,14 +1156,14 @@
                 }
             } else {
                 // Scroll horizontally
-                currentBagIndex = getCurrentViewIdx();
-                if (currentBagIndex > -1) {
+                currBagNbr = getCurrBagNbr();
+                if (currBagNbr > -1) {
                     if (afterPos0 > beforePosXPrev) {
                         // Scroll page right
-                        showSubView(currentBagIndex, direction.PREV);
+                        showSubView(currBagNbr, direction.PREV);
                     } else if (afterPos0 < beforePosXNext) {
                         // Scroll page left 
-                        showSubView(currentBagIndex, direction.NEXT);
+                        showSubView(currBagNbr, direction.NEXT);
                     }
                 }
             }
@@ -1123,39 +1172,25 @@
         // Sets current cursor position
         var onCursorMove = function(e) {
             if (!params.useScrollbar) {
-                e.preventDefault ? e.preventDefault(): e.returnValue = false; // preventDefault - other than IE8, returnValue - IE8
+                e.preventDefault ? e.preventDefault() : e.returnValue = false; // preventDefault - other than IE8, returnValue - IE8
             }
-
-            if (touchable) {
-                touches = e.touches;
-                var len = touches.length;
-                for (var i = 0; i < len; i++) {
-                    var touch = touches[i];
-                    cursorPos.x = getCursorPosX(touch);
-                    cursorPos.y = getCursorPosY(touch);
-                }
-            } else {
-                cursorPos.x = getCursorPosX(e);
-                cursorPos.y = getCursorPosY(e);
-            }
+            setPointerPosition(e);
         };
 
         // Gets x cursor position
         var getCursorPosX = function(obj) {
-            var pos = obj.clientX;
-            return pos;
+            return obj.clientX;
         };
 
         // Gets y cursor position
         var getCursorPosY = function(obj) {
-            var pos = obj.clientY;
-            return pos;
+            return obj.clientY;
         };
 
         // ----------------------------------------
         // START INIT FUNCTION
         // ----------------------------------------
-        
+
         // Init function
         var init = function() {
             addIndexOf();
@@ -1170,9 +1205,8 @@
             calcViewsDimensions();
             changeCssOnScrollbarVisible();
             createBagObjsForAllViews();
-            var len = allBagObjs.length;
-            for (var i = 0; i < len; i++) {
-                calcViewsPos(allBagObjs[i]);
+            for (var bagObjNbr = 0, len = allBagObjs.length; bagObjNbr < len; bagObjNbr++) {
+                calcViewsPos(allBagObjs[bagObjNbr]);
             }
             // Corrects subviews position after first page load without any URL anchor and when the scrollbar is visible
             onResize(false, false, false);
@@ -1195,7 +1229,7 @@
             }
             setMainbagDimWhenFixed();
         };
-        
+
         // ----------------------------------------
         // START MAIN BAG OBJECT
         // ----------------------------------------
