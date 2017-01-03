@@ -2,7 +2,7 @@
 
 ![preview](https://github.com/Viewdesic/viewScroller.js/blob/master/images/viewScroller.jpg?raw=true)
 
-![viewScroller.js version](http://img.shields.io/badge/viewScroller.js-v2.0.8-brightgreen.svg)
+![viewScroller.js version](http://img.shields.io/badge/viewScroller.js-v2.1.0-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 This is small and easy to use solution that allows you to create fullpage scrolling websites.
@@ -492,6 +492,31 @@ $('.mainbag').viewScroller({
 ```
 
 Note: When you use the fullscreen layout you don't have to declare any dimension parameters.
+
+## Different height of views
+
+You can define a custom height of each mainview.
+
+To set the custom height of mainviews just use viewsHeight property, ex.:
+
+([Live demo](http://www.viewdesic.com/viewscroller/custom-height.html))
+
+```javascript
+$('.mainbag').viewScroller({
+    viewsHeight: [200, 0, 300, 1600, ...]
+	/* Sets height:
+	* 200px for firstview
+	* 0 - means 100% vh for secondview
+    * 300px for thirdview
+	* 1600px for fourthview
+	...
+	*/
+});
+```
+
+Note:
+If you use viewsHeight property remember to declare height value for all the mainviews. Don't skip any of views.
+If you want to set 100% vh for some of the view, just put 0 value.
 
 ## Reporting issues
 
