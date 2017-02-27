@@ -1,7 +1,7 @@
 /* 
  * =================================================
  * viewScroller
- * Version: 2.1.0
+ * Version: 2.1.1
  * Copyright (c) 2016 Marcin Gierczak
  * http://www.viewdesic.com
  * =================================================
@@ -138,6 +138,10 @@
 
         $.fn.viewScroller.showView = function(anchor) {
             setHash(anchor, false);
+        };
+        
+        $.fn.viewScroller.getCurrentBagNbr = function() {
+            return getCurrBagNbr();
         };
 
         // Main classes
