@@ -2,7 +2,7 @@
 
 ![preview](https://github.com/Viewdesic/viewScroller.js/blob/master/images/viewScroller.jpg?raw=true)
 
-![viewScroller.js version](http://img.shields.io/badge/viewScroller.js-v2.1.0-brightgreen.svg)
+![viewScroller.js version](http://img.shields.io/badge/viewScroller.js-v2.1.1-brightgreen.svg)
 [![License](http://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 This is small and easy to use solution that allows you to create fullpage scrolling websites.
@@ -197,7 +197,7 @@ example:
 `$.fn.viewScroller.showSubView(bag-number, 'next' / 'prev');`                      
 example:                            
 ```javascript
-var currentBagIndex = getCurrentViewIdx();
+var currentBagNbr = $.fn.viewScroller.getCurrentBagNbr();
 $.fn.viewScroller.showSubView(currentBagIndex, 'next' / 'prev');
 ```
 
