@@ -1,4 +1,4 @@
-# viewScroller.js width mousewheel horizontal slides
+# viewScroller.js
 
 ![preview](https://github.com/Viewdesic/viewScroller.js/blob/master/images/viewScroller.jpg?raw=true)
 
