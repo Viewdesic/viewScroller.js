@@ -339,7 +339,6 @@
 
         // Gets first and last slides the view
         var getSlidesEnds = function(viewName) {
-            console.log(viewName);
             for (var bagObjNbr = 0, len = allBagObjs.length; bagObjNbr < len; bagObjNbr++) {
                 for (var viewNbr = 0, len2 = allBagObjs[bagObjNbr].viewsData.views.length; viewNbr < len2; viewNbr++) {
 
