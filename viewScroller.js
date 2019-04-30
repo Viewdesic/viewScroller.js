@@ -1,4 +1,4 @@
-/* 
+/*
  * =================================================
  * viewScroller
  * Version: 2.2
@@ -24,6 +24,8 @@
                 // Steering
                 useKeyboard: true, // Use keyboard to change views
                 useScrollbar: false, // Use scrollbar to change views
+                useMouseSlide: true, // Use mousewheel to change horizontal slides
+
                 changeWhenAnim: true, // Change views when they are changing
                 loopMainViews: false, // Change horizontal views (mainviews) in loop mode
                 loopSubViews: false, // Change vertical views (subviews) in loop mode
@@ -157,7 +159,7 @@
             SUBBAG: 1 // Bag type for subviews
         };
 
-        // DO NOT CHANGE!!! Shows view direction 
+        // DO NOT CHANGE!!! Shows view direction
         var direction = {
             NEXT: 1,
             PREV: -1
@@ -332,12 +334,34 @@
                     }
                 }
             }
+            return -1;
+        };
 
+        // Gets first and last slides the view
+        var getSlidesEnds = function(viewName) {
+            for (var bagObjNbr = 0, len = allBagObjs.length; bagObjNbr < len; bagObjNbr++) {
+                for (var viewNbr = 0, len2 = allBagObjs[bagObjNbr].viewsData.views.length; viewNbr < len2; viewNbr++) {
+
+                    if (allBagObjs[bagObjNbr].viewsData.views[viewNbr].split('#')[1] === viewName) {
+
+                        if (allBagObjs[bagObjNbr].viewsData.views[viewNbr].split('#')[0]==0){
+                            return -1;
+                        }
+                        else if (allBagObjs[bagObjNbr].viewsData.views[viewNbr].split('#')[0] == allBagObjs[bagObjNbr].viewsData.views.length-1){
+                            return -1;
+                        }
+                        else {
+                             return bagObjNbr;
+                        }
+                    }
+                }
+            }
             return -1;
         };
 
         // Gets current bag number for the viewname from url
         var getCurrBagNbr = function() {
+
             if (window.location.hash.indexOf('#') > -1) {
                 urlViewName = window.location.hash.replace('#', '');
                 var subviews = [],
@@ -352,15 +376,23 @@
                     sel.get(anchor_sel).parents(sel.get(subbag_sel)).each(function(idx) {
                         subviews.push($(this).attr('class'));
                     });
+
                     if (subviews.length > 0) {
                         if (subviews[0].includes(subbag_sel.replace('.', ''))) {
-                            return getBagNbr(urlViewName);
+                            if (params.useMouseSlide) {
+                                return getSlidesEnds(urlViewName);
+                            }
+                            else {
+                                return getBagNbr(urlViewName);
+                            }
                         }
                     }
                 }
 
                 return -1;
+
             } else {
+
                 return 0;
             }
         };
@@ -987,9 +1019,27 @@
             startTime = wheelTime;
 
             // Prevents views from scrolling when ctrl key is pressed and when the time diff is less than 50 ms
-            if (!event.ctrlKey && timeDiff > 50) {
-                event.deltaY < 0 ? showMainView(direction.NEXT) : showMainView(direction.PREV);
+            if (!event.ctrlKey && timeDiff > 100) {
+                if (params.useMouseSlide) {
+
+                    currBagNbr = getCurrBagNbr();
+
+                    if (currBagNbr==-1){
+                        event.deltaY < 0 ? showMainView(direction.NEXT) : showMainView(direction.PREV);
+                    } else {
+                        if (currBagNbr === 0) currBagNbr = 1;
+                        if (currBagNbr > -1) {
+                            event.deltaY < 0 ? showSubView(currBagNbr, direction.NEXT) : showSubView(currBagNbr, direction.PREV);
+                        }
+                    }
+
+                } else {
+                    event.deltaY < 0 ? showMainView(direction.NEXT) : showMainView(direction.PREV);
+                }
+
             }
+
+
         };
 
         // Adds click event on elements with next or prev class
@@ -1065,7 +1115,7 @@
             }
         };
 
-        // Adds keyboard events
+                // Adds keyboard events
         var bindKeyboard = function() {
             $document.on('keydown', onKeyDown);
         };
@@ -1156,7 +1206,7 @@
         };
 
         // Checks if your browser support touches
-        var isTouchDevice = function() { 
+        var isTouchDevice = function() {
             return (('ontouchstart' in window) ||
                 (navigator.MaxTouchPoints > 0) ||
                 (navigator.msMaxTouchPoints > 0));
@@ -1248,7 +1298,7 @@
                         // Scroll page right
                         showSubView(currBagNbr, direction.PREV);
                     } else if (afterPos0 < beforePosXNext) {
-                        // Scroll page left 
+                        // Scroll page left
                         showSubView(currBagNbr, direction.NEXT);
                     }
                 }
